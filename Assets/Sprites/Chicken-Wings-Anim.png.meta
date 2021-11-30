@@ -1,12 +1,42 @@
 fileFormatVersion: 2
 guid: f8e49722ba2704f09be37ad508ca305b
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -711235125253950461
+    second: Chicken-Wings-Anim_0
+  - first:
+      213: 7947027842609973482
+    second: Chicken-Wings-Anim_1
+  - first:
+      213: 3516872995590602952
+    second: Chicken-Wings-Anim_2
+  - first:
+      213: -524471530710111009
+    second: Chicken-Wings-Anim_3
+  - first:
+      213: 1892731180226441702
+    second: Chicken-Wings-Anim_4
+  - first:
+      213: 3459117962955854162
+    second: Chicken-Wings-Anim_5
+  - first:
+      213: -4019281051604644404
+    second: Chicken-Wings-Anim_6
+  - first:
+      213: 4139079644291983685
+    second: Chicken-Wings-Anim_7
+  - first:
+      213: 2883264569457717104
+    second: Chicken-Wings-Anim_8
+  - first:
+      213: 7997348548502998907
+    second: Chicken-Wings-Anim_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -35,13 +65,13 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -100
-    wrapU: -1
-    wrapV: -1
+    wrapU: 1
+    wrapV: 1
     wrapW: -1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -50,9 +80,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -75,13 +105,235 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Chicken-Wings-Anim_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 132
+        width: 252
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 304357ffb6f2126f0800000000000000
+      internalID: -711235125253950461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken-Wings-Anim_1
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 132
+        width: 252
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae808eab7b3894e60800000000000000
+      internalID: 7947027842609973482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken-Wings-Anim_2
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 132
+        width: 252
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c087563b517ec030800000000000000
+      internalID: 3516872995590602952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken-Wings-Anim_3
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 132
+        width: 252
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdce73debe3b8b8f0800000000000000
+      internalID: -524471530710111009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken-Wings-Anim_4
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 132
+        width: 252
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e1f3b4faf4544a10800000000000000
+      internalID: 1892731180226441702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken-Wings-Anim_5
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 252
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 251182ac571410030800000000000000
+      internalID: 3459117962955854162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken-Wings-Anim_6
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 4
+        width: 252
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccd85aabd25a838c0800000000000000
+      internalID: -4019281051604644404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken-Wings-Anim_7
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 4
+        width: 252
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549e217b107f07930800000000000000
+      internalID: 4139079644291983685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken-Wings-Anim_8
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 4
+        width: 252
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07f2ff789d9630820800000000000000
+      internalID: 2883264569457717104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken-Wings-Anim_9
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 4
+        width: 252
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7fc182122a4cfe60800000000000000
+      internalID: 7997348548502998907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 61c582916be1844b194a1c92e5da79ec
     internalID: 0
     vertices: []
     indices: 
