@@ -28,11 +28,18 @@ public class InputManager : MonoBehaviour
 
     private Vector3 hotsauceScreenPos;
 
+
+    // CONST Member Variables
+    private float maxDistanceXPos;  
+
     // Start is called before the first frame update
     void Start()
     {
         hotSauceSprayXPos = hotsauceSprayRenderer.transform.position.x;
 
+        // Initialize the maxDistanceXpos -->  Coordinate of the maximum point
+        // (right edge) that the Hotsauce Spray Machine stops at
+        maxDistanceXPos = mainCamera.pixelWidth - 100.0f;
     }
 
     // Update is called once per frame
@@ -86,29 +93,35 @@ public class InputManager : MonoBehaviour
         {
             // The move translation of the Hotsauce Spray Machine along the x axis
             hotsauceSprayRenderer.transform.Translate(movement, Space.World);
-        } else
+        }
+        else
         {
-            hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPostoWorld(100.0f), hotsauceSprayRenderer.transform.position.y);
+            // Check whether the Hotsauce Spray Machine is located on the left or right of its range movement limit
+            if (hotsauceSprayRenderer.transform.position.x >= ConvertScreenXPosToWorld(maxDistanceXPos))
+            {
+                hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(maxDistanceXPos), hotsauceSprayRenderer.transform.position.y);
+            } else
+            {
+                hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(100.0f), hotsauceSprayRenderer.transform.position.y);
+            }
+            
         }
 
     }
 
-    // Method to Check if the current x pos of the Hotsource Spray Machine is outside
+    // Method: Check if the current x pos of the Hotsource Spray Machine is outside
     // the width range of the Camera.
     private bool CheckIfHotsauceSprayOutOfCamera(Transform targetTransform)
     {
         // Convert the World Coordinates of the Hotsauce Spray Machine to Screen Coordinates
         hotsauceScreenPos = mainCamera.WorldToScreenPoint(targetTransform.position);
 
-        // Designate the coordinate of the maximum point (right edge) that the Hotsauce Spray Machine stops at
-        float xPosAtRightEdge = mainCamera.pixelWidth - 100f;
-
         // Designate the coordinate of the minimum point (left edge) that the Hotsauce Spray Machin stops at
-        float xPosAtLeftEdge = 100f;
+        float minDistanceXPos = 100.0f;
 
         // Return true when the current pos of the Hotsauce Spray is less than the x Pos of the Right Edge minus 100px
         // and greater than the x Pos of the Left Edge of the Camera plus 100px. 
-        if (hotsauceScreenPos.x <= xPosAtRightEdge && hotsauceScreenPos.x >= xPosAtLeftEdge)
+        if (hotsauceScreenPos.x <= maxDistanceXPos && hotsauceScreenPos.x >= minDistanceXPos)
         {
             return true;
         }
@@ -117,14 +130,12 @@ public class InputManager : MonoBehaviour
         return false;
     }
 
-    // Convert the x property of the Screen Position to World 
-    private float ConvertScreenXPostoWorld(float xPos)
+
+
+    // Method: Convert the x property of the Screen Position to World 
+    private float ConvertScreenXPosToWorld(float xPos)
     {
         Vector3 convertedXPos = mainCamera.ScreenToWorldPoint(new Vector3(xPos, 0));
-
-        // Debug the converted position 
-        Debug.Log("The Converted World Position is: " + convertedXPos.x);
-
         return convertedXPos.x;
     }
 
