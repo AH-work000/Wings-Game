@@ -47,7 +47,7 @@ public class InputManager : MonoBehaviour
         // Debug.Log("Time since start game: " + Time.time);
 
         // Print out properties info regarding the Main Camera
-            Debug.Log("Screen Position of the Hotsource Spray" + hotsauceScreenPos);
+        // Debug.Log("Screen Position of the Hotsource Spray" + hotsauceScreenPos);
 
 
         // Code Section 
@@ -73,8 +73,11 @@ public class InputManager : MonoBehaviour
                 hotsauceSprayRenderer.sprite = hotSauceSprayUpPos;
             }
 
-        // Get the horizontal axis where it moves 3.5 metres per second
-        movement.x += Input.GetAxis("Horizontal") * 0.08f * Time.deltaTime;
+        // Get the horizontal axis where it moves 0.08 metres per second
+        movement.x += Input.GetAxisRaw("Horizontal") * 0.08f * Time.deltaTime;
+
+        // The move translation of the Hotsauce Spray Machine along the x axis
+        hotsauceSprayRenderer.transform.Translate(movement, Space.World);
 
 
         // Check if the current x pos of the Hotsource Spray Machine is outside
@@ -83,6 +86,9 @@ public class InputManager : MonoBehaviour
         {
             // The move translation of the Hotsauce Spray Machine along the x axis
             hotsauceSprayRenderer.transform.Translate(movement, Space.World);
+        } else
+        {
+            hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPostoWorld(100.0f), hotsauceSprayRenderer.transform.position.y);
         }
 
     }
@@ -100,14 +106,26 @@ public class InputManager : MonoBehaviour
         // Designate the coordinate of the minimum point (left edge) that the Hotsauce Spray Machin stops at
         float xPosAtLeftEdge = 100f;
 
-
+        // Return true when the current pos of the Hotsauce Spray is less than the x Pos of the Right Edge minus 100px
+        // and greater than the x Pos of the Left Edge of the Camera plus 100px. 
         if (hotsauceScreenPos.x <= xPosAtRightEdge && hotsauceScreenPos.x >= xPosAtLeftEdge)
         {
             return true;
         }
 
+        // Otherwise return false
         return false;
+    }
 
+    // Convert the x property of the Screen Position to World 
+    private float ConvertScreenXPostoWorld(float xPos)
+    {
+        Vector3 convertedXPos = mainCamera.ScreenToWorldPoint(new Vector3(xPos, 0));
+
+        // Debug the converted position 
+        Debug.Log("The Converted World Position is: " + convertedXPos.x);
+
+        return convertedXPos.x;
     }
 
     /* 
