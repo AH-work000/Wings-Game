@@ -425,6 +425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hotSauceSprayRenderer: {fileID: 1145614308}
-  hotSauceSprayLeft: {fileID: 21300000, guid: c5bedfe2f01d54f06aac4f1515f6f871, type: 3}
-  hotSauceSprayUp: {fileID: 21300000, guid: b8b93a17543fe4510bcec7038607e336, type: 3}
-  hotSauceSprayRight: {fileID: 21300000, guid: c106c653ccdbe4616b4c32aafdc691d0, type: 3}
+  hotSauceSprayLeftPos: {fileID: 21300000, guid: c5bedfe2f01d54f06aac4f1515f6f871, type: 3}
+  hotSauceSprayUpPos: {fileID: 21300000, guid: b8b93a17543fe4510bcec7038607e336, type: 3}
+  hotSauceSprayRightPos: {fileID: 21300000, guid: c106c653ccdbe4616b4c32aafdc691d0, type: 3}
