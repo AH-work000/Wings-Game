@@ -29,8 +29,6 @@ public class InputManager : MonoBehaviour
     // Member Variables for Hotsauce Spray Machine
     private Vector3 movement;
 
-    private float hotSauceSprayXPos;
-
     private Vector3 hotsauceScreenPos;
 
     private float maxDistanceXPos;
@@ -44,9 +42,7 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hotSauceSprayXPos = hotsauceSprayRenderer.transform.position.x;
-
-        // Initialize the maxDistanceXpos -->  Coordinate of the maximum point
+        // Initialize the maxDistanceXPos -->  Coordinate of the maximum point
         // (right edge) that the Hotsauce Spray Machine stops at
         maxDistanceXPos = mainCamera.pixelWidth - 100.0f;
     }
@@ -84,8 +80,8 @@ public class InputManager : MonoBehaviour
                 gameManager.audioManagerScript.PlayShootSound(); 
             }
 
-        // Get the horizontal axis where it moves 0.02 metres per second
-        movement.x += Input.GetAxisRaw("Horizontal") * 0.02f * Time.deltaTime;
+        // Get the horizontal axis where it moves 0.03 metres per second
+        movement.x += Input.GetAxisRaw("Horizontal") * 0.03f * Time.deltaTime;
 
         // The move translation of the Hotsauce Spray Machine along the x axis
         hotsauceSprayRenderer.transform.Translate(movement, Space.World);

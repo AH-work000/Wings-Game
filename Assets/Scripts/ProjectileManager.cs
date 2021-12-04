@@ -7,20 +7,56 @@ public class ProjectileManager : MonoBehaviour
     // Member variables for the hot-sauce capsule projectile
     private const float TIME_DURATION = 0.2f;
 
+    // Member variables for the main camera
+    private GameObject mainCamera;
+
+    private Camera mainCameraComponent;
+
+    private float maxHeightYPos;
+
+    void Awake()
+    {
+        // Initialize the mainCamera GameObject by using the FindGameObjectWithTag method
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Initialize the mainCameraComponent by 
+        mainCameraComponent = mainCamera.GetComponent<Camera>();
+
+        // Initialize the maxHeightYPos -->  Coordinate of the highest point
+        // (top edge) that the projectile goes top
+        maxHeightYPos = mainCameraComponent.pixelHeight;
     }
 
     // Update is called once per frame
     void Update()
     {
         DoLerp();
+
+        // Check if the current height of the projectile is equal or over the
+        // maximum height of the camera
+        if (GetProjectileScreenYPos() >= maxHeightYPos)
+        {
+            DestoryObject();
+        }
     }
 
-    // Method for doing the lerp movement
+    // Method: Get the Current Y Screen Position  of the Projectile
+    private float GetProjectileScreenYPos()
+    {
+        // Convert the World Coordinates of the Projectile to Screen Coordinates
+        Vector3 projectileScreenPos = mainCameraComponent.WorldToScreenPoint(this.transform.position);
+
+        // Return the Y component of projectileScreenPos
+        return projectileScreenPos.y;
+    }
+
+
+    // Method: Do the lerp movement for the projectile
     private void DoLerp()
     {
         // Create a new variable and make it get the current position of the Hotsauce Spray
@@ -34,6 +70,14 @@ public class ProjectileManager : MonoBehaviour
 
         // Do the lerp method
         this.transform.position = Vector3.Lerp(oldPos, newPos, timeFraction);
+    }
+
+
+    // Method: Destroy this Object
+    private void DestoryObject()
+    {
+        Destroy(gameObject);
+        Debug.Log("Object has been destoryed");
     }
 
 }
