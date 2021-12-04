@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileManager : MonoBehaviour
 {
     // Member variables for the hot-sauce capsule projectile
-    private const float TIME_DURATION = 0.3f;
+    private const float TIME_DURATION = 0.2f;
 
 
     // Start is called before the first frame update

@@ -6,9 +6,14 @@ public class InputManager : MonoBehaviour
 {
     // Member Variables
 
-    public SpriteRenderer hotsauceSprayRenderer;
+    [SerializeField]
+    private SpriteRenderer hotsauceSprayRenderer;
 
-    public Camera mainCamera;
+    [SerializeField]
+    private Camera mainCamera;
+
+    [SerializeField]
+    private GameManager gameManager;
 
     // Member Variables for all variation of the Hotsauce Spray Sprite
 
@@ -32,7 +37,8 @@ public class InputManager : MonoBehaviour
 
 
     // Member Variables Prefabs
-    public GameObject hotSauceProjectile;
+    [SerializeField]
+    private GameObject hotSauceProjectile;
 
 
     // Start is called before the first frame update
@@ -71,11 +77,15 @@ public class InputManager : MonoBehaviour
             // If the 'X' Key is pressed --> Launch a Hotsauce Capsule Projectile
             if (Input.GetKeyDown(KeyCode.X))
             {
+                // Do the LaunchProjectile Method
                 LaunchProjectile();
+
+                // Play the sound that comes with launching the projectile
+                gameManager.audioManagerScript.PlayShootSound(); 
             }
 
-        // Get the horizontal axis where it moves 0.08 metres per second
-        movement.x += Input.GetAxisRaw("Horizontal") * 0.08f * Time.deltaTime;
+        // Get the horizontal axis where it moves 0.02 metres per second
+        movement.x += Input.GetAxisRaw("Horizontal") * 0.02f * Time.deltaTime;
 
         // The move translation of the Hotsauce Spray Machine along the x axis
         hotsauceSprayRenderer.transform.Translate(movement, Space.World);
