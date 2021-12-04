@@ -28,9 +28,12 @@ public class InputManager : MonoBehaviour
 
     private Vector3 hotsauceScreenPos;
 
+    private float maxDistanceXPos;
 
-    // CONST Member Variables
-    private float maxDistanceXPos;  
+
+    // Member Variables Prefabs
+    public GameObject hotSauceProjectile;
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,21 +48,6 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug Section
-
-        // Print out the Time for each frame -- To be commented out once the game is completed
-        // Debug.Log("Time DeltaTime: " + Time.deltaTime);
-
-        // Print out the Time for the duration of the game -- To be commented out once the game is completed
-        // Debug.Log("Time since start game: " + Time.time);
-
-        // Print out properties info regarding the Main Camera
-        // Debug.Log("Screen Position of the Hotsource Spray" + hotsauceScreenPos);
-
-
-        // Code Section 
-
-
         // Inputs for the rotation of the Hotsauce Spray Machine
 
             // If the 'E' Key is pressed --> Rotate the Hotsauce Spray Machine 45 degrees (RightPos)
@@ -78,6 +66,12 @@ public class InputManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.W))
             {
                 hotsauceSprayRenderer.sprite = hotSauceSprayUpPos;
+            }
+
+            // If the 'X' Key is pressed --> Launch a Hotsauce Capsule Projectile
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                LaunchProjectile();
             }
 
         // Get the horizontal axis where it moves 0.08 metres per second
@@ -139,21 +133,11 @@ public class InputManager : MonoBehaviour
         return convertedXPos.x;
     }
 
-    /* 
-    // Method for doing the lerp movement
-    private void DoLerp()
+
+    // Method: Create a new capsule projectile and launch it
+    private void LaunchProjectile()
     {
-        // Create a new variable and make it get the current position of the Hotsauce Spray
-        Vector3 oldPos = hotSauceSprayRenderer.transform.position;
-
-        // Create a new variable that stores the end position of the Hotsauce Spray
-        Vector3 newPos = new Vector3(hotSauceSprayRenderer.transform.position.x - 1.0f, hotSauceSprayRenderer.transform.position.y);
-
-        // Divide the current time.deltaTime by 2.0f (Time duration)
-        float timeFraction = Time.deltaTime / TIME_DURATION;
-
-        // Do the lerp method
-        hotSauceSprayRenderer.transform.position = Vector3.Lerp(oldPos, newPos, timeFraction);
-    } */
+        Instantiate(hotSauceProjectile, new Vector3(hotsauceSprayRenderer.transform.position.x, -5.8f, 0f), Quaternion.identity);
+    }
 
 }
