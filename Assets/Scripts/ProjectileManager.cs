@@ -14,6 +14,8 @@ public class ProjectileManager : MonoBehaviour
 
     private float maxHeightYPos;
 
+    private float maxWidthXPos;
+
 
     // Member variables for the direction of the lerping
     [SerializeField]
@@ -37,8 +39,12 @@ public class ProjectileManager : MonoBehaviour
         mainCameraComponent = mainCamera.GetComponent<Camera>();
 
         // Initialize the maxHeightYPos -->  Coordinate of the highest point
-        // (top edge) that the projectile goes top
+        // (top edge) that the projectile goes up to
         maxHeightYPos = mainCameraComponent.pixelHeight;
+
+        // Initialize the maxWidthXPos --> Coordinate of the most right-hand
+        // point (right edge) that the projectile goes up to
+        maxWidthXPos = mainCameraComponent.pixelWidth;
     }
 
     // Update is called once per frame
@@ -46,23 +52,46 @@ public class ProjectileManager : MonoBehaviour
     {
         DoLerp();
 
-        // Check if the current height of the projectile is equal or over the
-        // maximum height of the camera
-        if (GetProjectileScreenYPos() >= maxHeightYPos)
+        // Check if the current pos of the projectile is out of bounds
+        if (IsProjectileOverMaxScreenHeight() || IsProjectileXPosOutOfBounds())
         {
             DestoryObject();
         }
     }
 
-    // Method: Get the Current Y Screen Position  of the Projectile
-    private float GetProjectileScreenYPos()
+    // Method: Check if the projectile y pos is above the max height of the screen
+    private bool IsProjectileOverMaxScreenHeight()
     {
         // Convert the World Coordinates of the Projectile to Screen Coordinates
         Vector3 projectileScreenPos = mainCameraComponent.WorldToScreenPoint(this.transform.position);
 
-        // Return the Y component of projectileScreenPos
-        return projectileScreenPos.y;
+        // Return true if the y property of the projectile screen pos is equal to
+        // or greater than the maximum height of the camera
+        return projectileScreenPos.y >= maxHeightYPos;
     }
+
+
+    // Method: Check if the projectile x pos is out of bounds of the camera
+    private bool IsProjectileXPosOutOfBounds()
+    {
+        // Convert the World Coordinates of the Projectile to Screen Coordinates
+        Vector3 projectileScreenPos = mainCameraComponent.WorldToScreenPoint(this.transform.position);
+
+        /* 
+         * Return true if the x property of the projectile screen pos is:
+         * 
+         * The x property of the projectile screen pos is equal to or
+         * greater than the maximum width of the camera
+         * 
+         * OR its screen position is negative
+         * 
+        */
+
+        return projectileScreenPos.x >= maxWidthXPos || projectileScreenPos.x <= 0;
+    }
+
+
+
 
 
     // Method: Do the lerp movement for the projectile
