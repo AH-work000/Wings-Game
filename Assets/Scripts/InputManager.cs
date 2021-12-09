@@ -37,6 +37,9 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private GameObject hotSauceProjectileRightFacing;
 
+    [SerializeField]
+    private GameObject hotSauceProjectileLeftFacing;
+
 
 
     // Member Variables for Hotsauce Spray Machine
@@ -120,6 +123,7 @@ public class InputManager : MonoBehaviour
                 // Make the hasRightFacingPos bool to be true
                 hasRightFacingPos = true;
                 hasUpFacingPos = false;
+                hasLeftFacingPos = false;
             }
 
             // If the 'Q' Key is pressed --> Rotate the Hotsauce Spray Machine -45 degree (LeftPos)
@@ -129,7 +133,8 @@ public class InputManager : MonoBehaviour
 
                 // Make the hasLeftFacingPos bool to be true
                 hasRightFacingPos = false;
-                hasUpFacingPos = false;  
+                hasUpFacingPos = false;
+                hasLeftFacingPos = true;
             }
 
             // If the 'W' Key is pressed --> Rotate the Hotsauce Spray Machine back to its Up Pos
@@ -140,6 +145,7 @@ public class InputManager : MonoBehaviour
                 // Make the hasUpFacingZPos bool to be true
                 hasRightFacingPos = false;
                 hasUpFacingPos = true;
+                hasLeftFacingPos = false;
             }
 
 
@@ -215,14 +221,22 @@ public class InputManager : MonoBehaviour
             Instantiate(hotSauceProjectileUpFacing, new Vector3(hotsauceSprayRenderer.transform.position.x + 0.03f, -5.80f, 0f), Quaternion.identity);
         }
 
-        // If hasRightFacingPos bool is true --> generate a projectile that is going north-east in direction
+
+        // If hasRightFacingPos bool is true --> generate a projectile that is going north-east in direction (orientation)
         if (hasRightFacingPos)
         {
             Instantiate(hotSauceProjectileRightFacing, new Vector3(hotsauceSprayRenderer.transform.position.x + 0.84f, -6.11f, 0f), Quaternion.identity);
         }
 
+
+        // If hasLeftFacingPos bool is true --> generate a prokectile that is going north-west in direction (orientation)
+        if (hasLeftFacingPos)
+        {
+            Instantiate(hotSauceProjectileLeftFacing, new Vector3(hotsauceSprayRenderer.transform.position.x - 0.852f, -6.11f, 0f), Quaternion.identity);
+        }
+
     }
-       
+
 
     // Method: Check return the timer is over or at least 0.5 seconds in value
     private bool IsTimerOverHalfASecond()

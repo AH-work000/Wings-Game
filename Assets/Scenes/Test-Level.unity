@@ -621,3 +621,4 @@ MonoBehaviour:
   hotSauceSprayRightPos: {fileID: 21300000, guid: c106c653ccdbe4616b4c32aafdc691d0, type: 3}
   hotSauceProjectileUpFacing: {fileID: 6677381152003864962, guid: 2baa3fd1f6d47419aafafdecfd71929f, type: 3}
   hotSauceProjectileRightFacing: {fileID: 7996397528701614734, guid: 5a178886b339c45fdadfe77360c64ce8, type: 3}
+  hotSauceProjectileLeftFacing: {fileID: 2159322109964627870, guid: 608f1dd25888f4e849780bcf863220e6, type: 3}
