@@ -109,4 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9e40befdcc74040a7a8155d026e523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
+  xPosLerp: 0
+  yPosLerp: 1

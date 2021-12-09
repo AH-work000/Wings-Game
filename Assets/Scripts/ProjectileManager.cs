@@ -14,6 +14,15 @@ public class ProjectileManager : MonoBehaviour
 
     private float maxHeightYPos;
 
+
+    // Member variables for the direction of the lerping
+    [SerializeField]
+    private float xPosLerp;
+
+    [SerializeField]
+    private float yPosLerp;
+
+    
     void Awake()
     {
         // Initialize the mainCamera GameObject by using the FindGameObjectWithTag method
@@ -63,7 +72,7 @@ public class ProjectileManager : MonoBehaviour
         Vector3 oldPos = this.transform.position;
 
         // Create a new variable that stores the end position of the Hotsauce Spray
-        Vector3 newPos = new Vector3(this.transform.position.x, this.transform.position.y + 1.0f);
+        Vector3 newPos = new Vector3(this.transform.position.x + xPosLerp, this.transform.position.y + yPosLerp); // + 1.0f; 
 
         // Divide the current time.deltaTime by 2.0f (Time duration)
         float timeFraction = Time.deltaTime / TIME_DURATION;

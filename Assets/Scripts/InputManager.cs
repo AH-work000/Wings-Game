@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private GameManager gameManager;
 
+
+
     // Member Variables for all variation of the Hotsauce Spray Sprite
 
     [SerializeField]
@@ -26,6 +28,17 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     private Sprite hotSauceSprayRightPos;
 
+
+
+    // Member Variables Prefabs
+    [SerializeField]
+    private GameObject hotSauceProjectileUpFacing;
+
+    [SerializeField]
+    private GameObject hotSauceProjectileRightFacing;
+
+
+
     // Member Variables for Hotsauce Spray Machine
     private Vector3 movement;
 
@@ -33,12 +46,18 @@ public class InputManager : MonoBehaviour
 
     private float maxDistanceXPos;
 
-    // Member Variables Prefabs
-    [SerializeField]
-    private GameObject hotSauceProjectile;
+
 
     // Member Variables for Timer Function
-    private float timer; 
+    private float timer;
+
+
+    // Boolean Member Variables for checking what rotation pos is the Hotsauce Spray at
+    private bool hasRightFacingPos;
+
+    private bool hasUpFacingPos;
+
+    private bool hasLeftFacingPos;
 
 
 
@@ -51,6 +70,11 @@ public class InputManager : MonoBehaviour
 
         // Initialize the timer variable to be at 0.0f
         timer = 0.0f;
+
+        // Initialize all bool variables (hasUpFacingPos to true as it is the default position)
+        hasRightFacingPos = false;
+        hasUpFacingPos = true;
+        hasLeftFacingPos = false;
     }
 
 
@@ -70,7 +94,7 @@ public class InputManager : MonoBehaviour
 
         // Input to shoot the projectile
 
-
+             
             // If the 'X' Key is pressed and the timer is over 0.5 seconds in value
             // --> Launch a Hotsauce Capsule Projectile
             if (Input.GetKeyDown(KeyCode.X) && IsTimerOverHalfASecond())
@@ -92,26 +116,38 @@ public class InputManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 hotsauceSprayRenderer.sprite = hotSauceSprayRightPos;
+
+                // Make the hasRightFacingPos bool to be true
+                hasRightFacingPos = true;
+                hasUpFacingPos = false;
             }
 
             // If the 'Q' Key is pressed --> Rotate the Hotsauce Spray Machine -45 degree (LeftPos)
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 hotsauceSprayRenderer.sprite = hotSauceSprayLeftPos;
+
+                // Make the hasLeftFacingPos bool to be true
+                hasRightFacingPos = false;
+                hasUpFacingPos = false;  
             }
 
             // If the 'W' Key is pressed --> Rotate the Hotsauce Spray Machine back to its Up Pos
             if (Input.GetKeyDown(KeyCode.W))
             {
                 hotsauceSprayRenderer.sprite = hotSauceSprayUpPos;
+
+                // Make the hasUpFacingZPos bool to be true
+                hasRightFacingPos = false;
+                hasUpFacingPos = true;
             }
 
 
 
         // Hotsauce Spray Movement
 
-            // Get the horizontal axis where it moves 0.03 metres per second
-            movement.x += Input.GetAxisRaw("Horizontal") * 0.03f * Time.deltaTime;
+            // Get the horizontal axis where it moves 0.05 metres per second
+            movement.x += Input.GetAxisRaw("Horizontal") * 0.05f * Time.deltaTime;
 
 
             // The move translation of the Hotsauce Spray Machine along the x axis
@@ -173,9 +209,20 @@ public class InputManager : MonoBehaviour
     // Method: Create a new capsule projectile and launch it
     private void LaunchProjectile()
     {
-        Instantiate(hotSauceProjectile, new Vector3(hotsauceSprayRenderer.transform.position.x, -5.8f, 0f), Quaternion.identity);
-    }
+        // If hasUpFacingPos bool is true --> generate a projectile that is going north in direction
+        if (hasUpFacingPos)
+        {
+            Instantiate(hotSauceProjectileUpFacing, new Vector3(hotsauceSprayRenderer.transform.position.x + 0.03f, -5.80f, 0f), Quaternion.identity);
+        }
 
+        // If hasRightFacingPos bool is true --> generate a projectile that is going north-east in direction
+        if (hasRightFacingPos)
+        {
+            Instantiate(hotSauceProjectileRightFacing, new Vector3(hotsauceSprayRenderer.transform.position.x + 0.84f, -6.11f, 0f), Quaternion.identity);
+        }
+
+    }
+       
 
     // Method: Check return the timer is over or at least 0.5 seconds in value
     private bool IsTimerOverHalfASecond()
