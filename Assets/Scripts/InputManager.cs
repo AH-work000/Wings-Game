@@ -47,12 +47,15 @@ public class InputManager : MonoBehaviour
 
     private Vector3 hotsauceScreenPos;
 
+    private float minDistanceXPos;
+
     private float maxDistanceXPos;
 
 
 
     // Member Variables for Timer Function
     private float timer;
+
 
 
     // Boolean Member Variables for checking what rotation pos is the Hotsauce Spray at
@@ -67,9 +70,14 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        // Initialize minDistanceXPos --> Designate the coordinate of the minimum point
+        // (left edge) that the Hotsauce Spray Machin stops at
+        minDistanceXPos = mainCamera.pixelWidth / 15; 
+
         // Initialize the maxDistanceXPos -->  Coordinate of the maximum point
         // (right edge) that the Hotsauce Spray Machine stops at
-        maxDistanceXPos = mainCamera.pixelWidth - 100.0f;
+        maxDistanceXPos = mainCamera.pixelWidth - minDistanceXPos;
 
         // Initialize the timer variable to be at 0.0f
         timer = 0.0f;
@@ -175,7 +183,7 @@ public class InputManager : MonoBehaviour
                     hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(maxDistanceXPos), hotsauceSprayRenderer.transform.position.y);
                 } else
                 {
-                    hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(100.0f), hotsauceSprayRenderer.transform.position.y);
+                    hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(minDistanceXPos), hotsauceSprayRenderer.transform.position.y);
                 }
             
             }
@@ -188,9 +196,6 @@ public class InputManager : MonoBehaviour
     {
         // Convert the World Coordinates of the Hotsauce Spray Machine to Screen Coordinates
         hotsauceScreenPos = mainCamera.WorldToScreenPoint(targetTransform.position);
-
-        // Designate the coordinate of the minimum point (left edge) that the Hotsauce Spray Machin stops at
-        float minDistanceXPos = 100.0f;
 
         // Return true when the current pos of the Hotsauce Spray is less than the x Pos of the Right Edge minus 100px
         // and greater than the x Pos of the Left Edge of the Camera plus 100px. 
