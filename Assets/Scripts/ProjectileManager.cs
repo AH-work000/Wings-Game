@@ -88,10 +88,8 @@ public class ProjectileManager : MonoBehaviour
         */
 
         return projectileScreenPos.x >= maxWidthXPos || projectileScreenPos.x <= 0;
+
     }
-
-
-
 
 
     // Method: Do the lerp movement for the projectile
