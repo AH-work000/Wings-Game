@@ -77,7 +77,6 @@ public class ProjectileManager : MonoBehaviour
     private void DestoryObject()
     {
         Destroy(gameObject);
-        Debug.Log("Object has been destoryed");
     }
 
 }

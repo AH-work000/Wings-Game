@@ -33,10 +33,13 @@ public class InputManager : MonoBehaviour
 
     private float maxDistanceXPos;
 
-
     // Member Variables Prefabs
     [SerializeField]
     private GameObject hotSauceProjectile;
+
+    // Member Variables for Timer Function
+    private float timer; 
+
 
 
     // Start is called before the first frame update
@@ -45,11 +48,44 @@ public class InputManager : MonoBehaviour
         // Initialize the maxDistanceXPos -->  Coordinate of the maximum point
         // (right edge) that the Hotsauce Spray Machine stops at
         maxDistanceXPos = mainCamera.pixelWidth - 100.0f;
+
+        // Initialize the timer variable to be at 0.0f
+        timer = 0.0f;
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        // Timer
+
+            // Check if the value of the timer is less than 0.5f 
+            if (timer < 0.5f)
+            {
+                // Count the time by adding time.deltaTime to the timer variable for each frame
+                timer += Time.deltaTime;
+                Debug.Log(timer);
+            }
+
+
+        // Input to shoot the projectile
+
+
+            // If the 'X' Key is pressed and the timer is over 0.5 seconds in value
+            // --> Launch a Hotsauce Capsule Projectile
+            if (Input.GetKeyDown(KeyCode.X) && IsTimerOverHalfASecond())
+            {
+                // Do the LaunchProjectile Method
+                LaunchProjectile();
+
+                // Play the sound that comes with launching the projectile
+                gameManager.audioManagerScript.PlayShootSound();
+
+                // Reset the timer to 0.0f;
+                timer = 0.0f;
+            }
+  
+
         // Inputs for the rotation of the Hotsauce Spray Machine
 
             // If the 'E' Key is pressed --> Rotate the Hotsauce Spray Machine 45 degrees (RightPos)
@@ -70,42 +106,37 @@ public class InputManager : MonoBehaviour
                 hotsauceSprayRenderer.sprite = hotSauceSprayUpPos;
             }
 
-            // If the 'X' Key is pressed --> Launch a Hotsauce Capsule Projectile
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                // Do the LaunchProjectile Method
-                LaunchProjectile();
-
-                // Play the sound that comes with launching the projectile
-                gameManager.audioManagerScript.PlayShootSound(); 
-            }
-
-        // Get the horizontal axis where it moves 0.03 metres per second
-        movement.x += Input.GetAxisRaw("Horizontal") * 0.03f * Time.deltaTime;
-
-        // The move translation of the Hotsauce Spray Machine along the x axis
-        hotsauceSprayRenderer.transform.Translate(movement, Space.World);
 
 
-        // Check if the current x pos of the Hotsource Spray Machine is outside
-        // the width range of the Camera.
-        if (CheckIfHotsauceSprayOutOfCamera(hotsauceSprayRenderer.transform))
-        {
+        // Hotsauce Spray Movement
+
+            // Get the horizontal axis where it moves 0.03 metres per second
+            movement.x += Input.GetAxisRaw("Horizontal") * 0.03f * Time.deltaTime;
+
+
             // The move translation of the Hotsauce Spray Machine along the x axis
             hotsauceSprayRenderer.transform.Translate(movement, Space.World);
-        }
-        else
-        {
-            // Check whether the Hotsauce Spray Machine is located on the left or right of its range movement limit
-            if (hotsauceSprayRenderer.transform.position.x >= ConvertScreenXPosToWorld(maxDistanceXPos))
+
+
+            // Check if the current x pos of the Hotsource Spray Machine is outside
+            // the width range of the Camera.
+            if (CheckIfHotsauceSprayOutOfCamera(hotsauceSprayRenderer.transform))
             {
-                hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(maxDistanceXPos), hotsauceSprayRenderer.transform.position.y);
-            } else
-            {
-                hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(100.0f), hotsauceSprayRenderer.transform.position.y);
+                // The move translation of the Hotsauce Spray Machine along the x axis
+                hotsauceSprayRenderer.transform.Translate(movement, Space.World);
             }
+            else
+            {
+                // Check whether the Hotsauce Spray Machine is located on the left or right of its range movement limit
+                if (hotsauceSprayRenderer.transform.position.x >= ConvertScreenXPosToWorld(maxDistanceXPos))
+                {
+                    hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(maxDistanceXPos), hotsauceSprayRenderer.transform.position.y);
+                } else
+                {
+                    hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(100.0f), hotsauceSprayRenderer.transform.position.y);
+                }
             
-        }
+            }
 
     }
 
@@ -131,7 +162,6 @@ public class InputManager : MonoBehaviour
     }
 
 
-
     // Method: Convert the x property of the Screen Position to World 
     private float ConvertScreenXPosToWorld(float xPos)
     {
@@ -144,6 +174,13 @@ public class InputManager : MonoBehaviour
     private void LaunchProjectile()
     {
         Instantiate(hotSauceProjectile, new Vector3(hotsauceSprayRenderer.transform.position.x, -5.8f, 0f), Quaternion.identity);
+    }
+
+
+    // Method: Check return the timer is over or at least 0.5 seconds in value
+    private bool IsTimerOverHalfASecond()
+    {
+        return timer >= 0.5f;
     }
 
 }
