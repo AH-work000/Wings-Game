@@ -95,13 +95,13 @@ public class ProjectileManager : MonoBehaviour
     // Method: Do the lerp movement for the projectile
     private void DoLerp()
     {
-        // Create a new variable and make it get the current position of the Hotsauce Spray
+        // Create a new variable and make it get the current position of the Projectile
         Vector3 oldPos = this.transform.position;
 
-        // Create a new variable that stores the end position of the Hotsauce Spray
+        // Create a new variable that stores the end position of the Projectile
         Vector3 newPos = new Vector3(this.transform.position.x + xPosLerp, this.transform.position.y + yPosLerp); // + 1.0f; 
 
-        // Divide the current time.deltaTime by 2.0f (Time duration)
+        // Divide the current time.deltaTime by 0.2f (Time duration)
         float timeFraction = Time.deltaTime / TIME_DURATION;
 
         // Do the lerp method
