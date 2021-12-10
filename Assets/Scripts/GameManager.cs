@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
     private float posSpacingLength;
 
 
+    // Temp Member Variables -- ONLY FOR TESTING; TO BE DELETED LATER
+    private bool hasAllWingsSpawn = false;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -72,23 +76,44 @@ public class GameManager : MonoBehaviour
             Debug.Log("Footer Height: " + footerHeight);
             Debug.Log("In-Game-UI Height: " + inGameUIHeight);
 
-        // Get the yCoord rate and store it into a variable
-        float yCoordRate = GetYCoordInWorldSpace(posSpacingLength); // Returns negative value
-
-        Debug.Log("Y Coordinate Rate: " + yCoordRate);
 
         // Instantiate the Chicken Wings as the following position -- TO BE EDITED LATER
-        Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(yCoordRate, 1.5f), 0), Quaternion.identity);
+        if (!hasAllWingsSpawn)
+        {
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(2.0f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(3.0f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(4.0f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(5.0f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(6.0f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(7.0f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(8.0f), 0), Quaternion.identity);
 
+            hasAllWingsSpawn = true;
+        }
+        
     }
 
+    // FUNCTIONS AND PROCEDURE
 
-    // Method: Set the Y Coordinate of the Chicken Wing Starting Position
-    private float SetYCoordStartingPos(float yCoordRate, float multiplier)
-    {
-        // Multiply the designated Y Coordinate Rate by a whole number (multiplier) 
-        return yCoordRate * multiplier;
-    }
+
+        // Method: Set the Y Coordinate of the Chicken Wing Starting Position
+        private float SetYCoordStartingPos(float multiplier)
+        {
+            // Multiply the osSpacingLength by the designated multiplier to get the Y Coordinates of
+            // Chicken Wing Starting Position in Screen Point
+            float yScreenPos = posSpacingLength * multiplier;
+
+            Debug.Log("The Y Coordinate of the Starting Position (Screen Point) is: " + yScreenPos);
+
+            // Convert yScreenPos from Screen Point to World Space
+            float yCoordStartingPos = GetYCoordInWorldSpace(yScreenPos);
+
+
+            Debug.Log("The Y Coordinate of the Starting Position is: " + yCoordStartingPos);
+
+
+            return yCoordStartingPos;
+        }
 
 
 
@@ -118,7 +143,7 @@ public class GameManager : MonoBehaviour
 
             // Return just the y property as the Y Coordinate of the Starting Position
             // of the wing in World Space -- Mathf.Abs is added to make the return value positive
-            return Mathf.Abs(newVector.y);
+            return newVector.y;
         }
 
 }
