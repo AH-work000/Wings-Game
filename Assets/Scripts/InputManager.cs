@@ -99,7 +99,6 @@ public class InputManager : MonoBehaviour
             {
                 // Count the time by adding time.deltaTime to the timer variable for each frame
                 timer += Time.deltaTime;
-                Debug.Log(timer);
             }
 
 

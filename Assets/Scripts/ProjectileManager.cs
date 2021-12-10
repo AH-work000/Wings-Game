@@ -12,9 +12,9 @@ public class ProjectileManager : MonoBehaviour
 
     private Camera mainCameraComponent;
 
-    private float maxHeightYPos;
+    private float maxHeight;
 
-    private float maxWidthXPos;
+    private float maxWidth;
 
 
     // Member variables for the direction of the lerping
@@ -38,13 +38,13 @@ public class ProjectileManager : MonoBehaviour
         // Initialize the mainCameraComponent by 
         mainCameraComponent = mainCamera.GetComponent<Camera>();
 
-        // Initialize the maxHeightYPos -->  Coordinate of the highest point
+        // Initialize the maxHeight -->  Coordinate of the highest point
         // (top edge) that the projectile goes up to
-        maxHeightYPos = mainCameraComponent.pixelHeight;
+        maxHeight = mainCameraComponent.pixelHeight;
 
-        // Initialize the maxWidthXPos --> Coordinate of the most right-hand
+        // Initialize the maxWidth --> Coordinate of the most right-hand
         // point (right edge) that the projectile goes up to
-        maxWidthXPos = mainCameraComponent.pixelWidth;
+        maxWidth = mainCameraComponent.pixelWidth;
     }
 
     // Update is called once per frame
@@ -67,7 +67,7 @@ public class ProjectileManager : MonoBehaviour
 
         // Return true if the y property of the projectile screen pos is equal to
         // or greater than the maximum height of the camera
-        return projectileScreenPos.y >= maxHeightYPos;
+        return projectileScreenPos.y >= maxHeight;
     }
 
 
@@ -87,7 +87,7 @@ public class ProjectileManager : MonoBehaviour
          * 
         */
 
-        return projectileScreenPos.x >= maxWidthXPos || projectileScreenPos.x <= 0;
+        return projectileScreenPos.x >= maxWidth || projectileScreenPos.x <= 0;
 
     }
 
