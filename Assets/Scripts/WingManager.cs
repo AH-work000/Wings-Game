@@ -11,9 +11,14 @@ public class WingManager : MonoBehaviour
 
     private float maxWidth;
 
-    // Member variables for GameMode Selections
 
+    // Member variables for GameMode Selections
     public enum GameMode {Easy = 4, Medium = 2, Hard = 1};
+
+
+    // Member variables for Animator of the Chicken Wing
+    [SerializeField]
+    private Animator wingAnimator;
 
 
     void Awake()
@@ -77,16 +82,23 @@ public class WingManager : MonoBehaviour
          * Return true if the x property of the wing screen pos is:
          * 
          * The x property of the wing screen pos is equal to or
-         * greater than the maximum width of the camera
+         * greater than the (maximum width + 60.0f) of the camera
         */
 
-        return projectileScreenPos.x >= maxWidth;
+        return projectileScreenPos.x >= maxWidth + 60.0f;
 
     }
 
 
+    // Method: Start the death animation of the chicken wing after it have been hit.
+    public void startDeadAnim()
+    {
+        wingAnimator.SetTrigger("isDead");
+    }
 
-    // Method: Destroy this Object
+
+
+    // Method: Destroy this Object -- TO BE DELETED AND MERGE 
     private void DestoryObject()
     {
         Destroy(gameObject);

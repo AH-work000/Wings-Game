@@ -109,7 +109,8 @@ public class ProjectileManager : MonoBehaviour
     }
 
 
-    // Method: Destroy this Object
+
+    // Method: Destroy this Object -- TO BE DELETED AND MERGE 
     private void DestoryObject()
     {
         Destroy(gameObject);
