@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: xPosLerp
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 5949151434580394624, guid: 5a178886b339c45fdadfe77360c64ce8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7996397528701614728, guid: 5a178886b339c45fdadfe77360c64ce8, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6979904724857094540}
   - component: {fileID: 3156556478116020512}
   m_Layer: 0
-  m_Name: Hotsauce Projectile
+  m_Name: Hotsauce Projectile Up Facing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,3 +111,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xPosLerp: 0
   yPosLerp: 1
+  gameManager: {fileID: 0}

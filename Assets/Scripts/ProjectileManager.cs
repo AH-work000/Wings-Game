@@ -17,6 +17,7 @@ public class ProjectileManager : MonoBehaviour
     private float maxWidth;
 
 
+
     // Member variables for the direction of the lerping
     [SerializeField]
     private float xPosLerp;
@@ -24,6 +25,7 @@ public class ProjectileManager : MonoBehaviour
     [SerializeField]
     private float yPosLerp;
 
+ 
     
     void Awake()
     {
@@ -35,7 +37,7 @@ public class ProjectileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize the mainCameraComponent by 
+        // Initialize the mainCameraComponent variable by using the GetComponent method
         mainCameraComponent = mainCamera.GetComponent<Camera>();
 
         // Initialize the maxHeight -->  Coordinate of the highest point
@@ -55,7 +57,7 @@ public class ProjectileManager : MonoBehaviour
         // Check if the current pos of the projectile is out of bounds
         if (IsProjectileOverMaxScreenHeight() || IsProjectileXPosOutOfBounds())
         {
-            DestoryObject();
+            Destroy(gameObject);
         }
     }
 
@@ -106,14 +108,6 @@ public class ProjectileManager : MonoBehaviour
 
         // Do the lerp method
         this.transform.position = Vector3.Lerp(oldPos, newPos, timeFraction);
-    }
-
-
-
-    // Method: Destroy this Object -- TO BE DELETED AND MERGE 
-    private void DestoryObject()
-    {
-        Destroy(gameObject);
     }
 
 }

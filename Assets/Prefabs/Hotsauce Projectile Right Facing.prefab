@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6677381152003864962, guid: 2baa3fd1f6d47419aafafdecfd71929f, type: 3}
       propertyPath: m_Name
-      value: Hotsauce Projectile Up Direction
+      value: Hotsauce Projectile Right Facing
       objectReference: {fileID: 0}
     - target: {fileID: 6677381152003864964, guid: 2baa3fd1f6d47419aafafdecfd71929f, type: 3}
       propertyPath: m_RootOrder
@@ -57,6 +57,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6677381152003864964, guid: 2baa3fd1f6d47419aafafdecfd71929f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979904724857094540, guid: 2baa3fd1f6d47419aafafdecfd71929f, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

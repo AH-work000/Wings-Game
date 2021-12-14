@@ -30,9 +30,6 @@ public class WingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize the mainCamera GameObject by using the FindGameObjectWithTag method
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-
         // Initialize the mainCameraComponent by 
         mainCameraComponent = mainCamera.GetComponent<Camera>();
 
@@ -50,7 +47,7 @@ public class WingManager : MonoBehaviour
         // Check if the current pos of the wing is out of bounds
         if (IsWingsXPosOutOfBounds())
         {
-            DestoryObject();
+            Destroy(gameObject);
         }
     }
 
@@ -90,17 +87,21 @@ public class WingManager : MonoBehaviour
     }
 
 
+    // PUBLIC METHODS
+
+
+
     // Method: Start the death animation of the chicken wing after it have been hit.
     public void startDeadAnim()
     {
         wingAnimator.SetTrigger("isDead");
     }
 
-
-
-    // Method: Destroy this Object -- TO BE DELETED AND MERGE 
-    private void DestoryObject()
+    // Method: Call the destoryWingPrefab Method of the Chicken Wing
+    // that got shot by a projectile
+    private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
     }
+
 }

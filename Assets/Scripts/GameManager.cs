@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     private float posSpacingLength;
 
 
+
     // Temp Member Variables -- ONLY FOR TESTING; TO BE DELETED LATER
     private bool hasAllWingsSpawn = false;
 
@@ -80,14 +81,12 @@ public class GameManager : MonoBehaviour
         // Instantiate the Chicken Wings as the following position -- TO BE EDITED LATER
         if (!hasAllWingsSpawn)
         {
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(2.0f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(3.0f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(4.0f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(5.0f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(6.0f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(7.0f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(8.0f), 0), Quaternion.identity);
-
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(2.5f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(3.5f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(4.5f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(5.5f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(6.5f), 0), Quaternion.identity);
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(7.5f), 0), Quaternion.identity);
             hasAllWingsSpawn = true;
         }
         
