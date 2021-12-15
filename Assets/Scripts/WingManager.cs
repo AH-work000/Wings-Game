@@ -16,40 +16,76 @@ public class WingManager : MonoBehaviour
     public enum GameMode {Easy = 4, Medium = 2, Hard = 1};
 
 
-    // Member variables for Animator of the Chicken Wing
+    // Member variables for the Animator of the Chicken Wing
     [SerializeField]
     private Animator wingAnimator;
 
 
+    // Member variables for the Game Manager 
+    private GameObject gameManagerObject;
+
+    private GameManager gameManager;
+
+
+    // Bool Member variables
+    private bool hasHit;
+
+
     void Awake()
     {
-        // Initialize the mainCamera GameObject by using the FindGameObjectWithTag method
+        // Initialize the mainCamera GameObject by using the FindGameObjectWithTag static method
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+
+        // Initialize the gameManagerObject GameObject by using the FindGameObjectWithTag static method
+        gameManagerObject = GameObject.FindGameObjectWithTag("GameManager");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize the mainCameraComponent by 
+        // Initialize the mainCameraComponent by using the GetComponent static method
         mainCameraComponent = mainCamera.GetComponent<Camera>();
+
+        // Initialize the gameManager by using the GetComponent static method
+        gameManager = gameManagerObject.GetComponent<GameManager>();
 
         // Initialize the maxWidth --> Coordinate of the most right-hand
         // point (right edge) that the projectile goes up to
         maxWidth = mainCameraComponent.pixelWidth;
+
+        // Initialize the hasHit variable as false
+        hasHit = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Do the lerp where the game mode is set to easy (timeDuration = (Easy)4.0f)
-        DoLerp((float)GameMode.Easy);
+        // Do the lerp movement movement unless the chicken wing have been hit
+        if (!hasHit)
+        {
+            // Do the lerp where the game mode is set to easy (timeDuration = (Easy)4.0f)
+            DoLerp((float)GameMode.Easy);
+        }
 
         // Check if the current pos of the wing is out of bounds
         if (IsWingsXPosOutOfBounds())
         {
-            Destroy(gameObject);
+            WingDestroy();
+        }
+
+        // Check if a chicken wing have been hit by checking if the hasHit bool is true
+        if (hasHit)
+        {
+            // Play the hit sound
+            gameManager.audioManagerScript.PlayHitSound();
+
+            StartDeadAnim();
+
+            // Destroy the Wing Prefab after 1 second
+            Invoke("WingDestroy", 1.0f);
         }
     }
+
 
 
     // Method: Do the lerp movement for the Chicken Wing
@@ -67,6 +103,7 @@ public class WingManager : MonoBehaviour
         // Do the lerp method
         this.transform.position = Vector3.Lerp(oldPos, newPos, timeFraction);
     }
+
 
 
     // Method: Check if the wings x pos is out of bounds of the camera
@@ -87,21 +124,30 @@ public class WingManager : MonoBehaviour
     }
 
 
-    // PUBLIC METHODS
-
-
-
-    // Method: Start the death animation of the chicken wing after it have been hit.
-    public void startDeadAnim()
-    {
-        wingAnimator.SetTrigger("isDead");
-    }
 
     // Method: Call the destoryWingPrefab Method of the Chicken Wing
     // that got shot by a projectile
     private void OnTriggerEnter(Collider other)
     {
+        // Set the hasHit boolean to true
+        hasHit = true;
+    }
+
+
+    // Method: Destroy the Chicken Wing Prefab
+    private void WingDestroy()
+    {
         Destroy(gameObject);
+    }
+
+
+    // PUBLIC METHODS
+
+
+    // Method: Start the death animation of the chicken wing after it have been hit.
+    public void StartDeadAnim()
+    {
+        wingAnimator.SetTrigger("isDead");
     }
 
 }

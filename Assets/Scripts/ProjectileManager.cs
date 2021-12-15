@@ -37,7 +37,7 @@ public class ProjectileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize the mainCameraComponent variable by using the GetComponent method
+        // Initialize the mainCameraComponent variable by using the GetComponent static method
         mainCameraComponent = mainCamera.GetComponent<Camera>();
 
         // Initialize the maxHeight -->  Coordinate of the highest point

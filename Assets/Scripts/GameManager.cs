@@ -73,11 +73,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Print out the following stats to the console
-            Debug.Log("Footer Height: " + footerHeight);
-            Debug.Log("In-Game-UI Height: " + inGameUIHeight);
-
-
+     
         // Instantiate the Chicken Wings as the following position -- TO BE EDITED LATER
         if (!hasAllWingsSpawn)
         {
@@ -102,13 +98,8 @@ public class GameManager : MonoBehaviour
             // Chicken Wing Starting Position in Screen Point
             float yScreenPos = posSpacingLength * multiplier;
 
-            Debug.Log("The Y Coordinate of the Starting Position (Screen Point) is: " + yScreenPos);
-
             // Convert yScreenPos from Screen Point to World Space
             float yCoordStartingPos = GetYCoordInWorldSpace(yScreenPos);
-
-
-            Debug.Log("The Y Coordinate of the Starting Position is: " + yCoordStartingPos);
 
 
             return yCoordStartingPos;
