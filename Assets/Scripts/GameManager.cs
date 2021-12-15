@@ -40,7 +40,19 @@ public class GameManager : MonoBehaviour
 
 
     // Temp Member Variables -- ONLY FOR TESTING; TO BE DELETED LATER
-    private bool hasAllWingsSpawn = false;
+
+    // Bool Member Variables
+    private bool isTimerOverFourSeconds;
+
+
+
+    // Member Variables for Timer Function
+    private float timer;
+
+
+
+    // Member variable array for StartingYCoord Pos of the Chicken Wing Prefab
+    private float[] startingYCoordArray = new float[] { 2.5f, 3.5f, 4.5f, 5.5f, 6.5f, 7.5f };
 
 
 
@@ -66,6 +78,9 @@ public class GameManager : MonoBehaviour
         // Initialize the posSpacingLength variable --> The distance
         // between each starting position of the wings on the y-axis
         posSpacingLength = maxHeight / 10;
+
+        // Initialize the isTimerOverFourSeconds bool as true to start the game
+        isTimerOverFourSeconds = true;
     }
 
 
@@ -73,20 +88,40 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
-        // Instantiate the Chicken Wings as the following position -- TO BE EDITED LATER
-        if (!hasAllWingsSpawn)
+
+
+        if (isTimerOverFourSeconds)
+            {
+            // Generate the element position reference for the startingYCoordArray
+            int yCoordArrayElementPosition = Random.Range(0, 5);
+
+            // Instantiate the Chicken Wing as the following position
+            CreateChickenWing(startingYCoordArray[yCoordArrayElementPosition]);
+
+            // Once the chicken have been launch -- make isTimerOverFourSeconds false
+            // as a chicken wing prefab have just been created
+            isTimerOverFourSeconds = false;
+
+            }
+
+
+        // Timer -- Add the time.deltaTime of each frame to the timer member variable 
+        timer += Time.deltaTime;
+        // Debug.Log("The current time since starting the game is: " + timer);
+
+
+        // Check if timer is over four seconds
+        if (timer >= 4.0f)
         {
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(2.5f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(3.5f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(4.5f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(5.5f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(6.5f), 0), Quaternion.identity);
-            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(7.5f), 0), Quaternion.identity);
-            hasAllWingsSpawn = true;
+            isTimerOverFourSeconds = true;
+
+            // Reset the timer to zero
+            timer = 0.0f;
         }
         
     }
+
+
 
     // FUNCTIONS AND PROCEDURE
 
@@ -103,6 +138,13 @@ public class GameManager : MonoBehaviour
 
 
             return yCoordStartingPos;
+        }
+
+
+        // Method: Create and launch a Chicken Wing Prefab
+        private void CreateChickenWing(float yCoordPos)
+        {
+            Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(yCoordPos), 0), Quaternion.identity);
         }
 
 

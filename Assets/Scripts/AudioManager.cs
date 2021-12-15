@@ -52,8 +52,6 @@ public class AudioManager : MonoBehaviour
         chickenWingAudioSource.clip = wingHitSound;
         chickenWingAudioSource.volume = 120.0f;
         chickenWingAudioSource.Play();
-        Debug.Log("Hit sound successful");
-        // chickenWingAudioSource.clip = null;
     }
 
 }

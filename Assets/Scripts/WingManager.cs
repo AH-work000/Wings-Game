@@ -30,6 +30,8 @@ public class WingManager : MonoBehaviour
     // Bool Member variables
     private bool hasHit;
 
+    private bool soundIsOn;
+
 
     void Awake()
     {
@@ -53,8 +55,13 @@ public class WingManager : MonoBehaviour
         // point (right edge) that the projectile goes up to
         maxWidth = mainCameraComponent.pixelWidth;
 
-        // Initialize the hasHit variable as false
+        // Initialize the hasHit bool variable as false
+        // It's since the chicken wing prefab had not been hit
         hasHit = false;
+
+        // Initialize the soundIsOn bool variable as false
+        // It's since the chicken wing prefab had not been hit
+        soundIsOn = false;
     }
 
     // Update is called once per frame
@@ -76,13 +83,23 @@ public class WingManager : MonoBehaviour
         // Check if a chicken wing have been hit by checking if the hasHit bool is true
         if (hasHit)
         {
-            // Play the hit sound
-            gameManager.audioManagerScript.PlayHitSound();
+            // Check if the soundIsOn bool is set to false 
+            if (!soundIsOn)
+            {
+                // Play the hit sound
+                gameManager.audioManagerScript.PlayHitSound();
 
+                // Set the soundIsOn bool to true as the sound is being played
+                soundIsOn = true;
+            }
+
+            // Play the death animation 
             StartDeadAnim();
 
-            // Destroy the Wing Prefab after 1 second
-            Invoke("WingDestroy", 1.0f);
+            // Destroy the Wing Prefab
+            // (i.e. after the death animation is finished playing)
+            Invoke("WingDestroy", 1.5f);
+
         }
     }
 
@@ -141,11 +158,8 @@ public class WingManager : MonoBehaviour
     }
 
 
-    // PUBLIC METHODS
-
-
     // Method: Start the death animation of the chicken wing after it have been hit.
-    public void StartDeadAnim()
+    private void StartDeadAnim()
     {
         wingAnimator.SetTrigger("isDead");
     }

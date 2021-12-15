@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 2028212723}
   - component: {fileID: 2028212722}
   m_Layer: 0
-  m_Name: Chicken Wing Audio Source
+  m_Name: Chicken AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
