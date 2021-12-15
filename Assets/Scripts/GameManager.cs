@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     // Bool Member Variables
     private bool isTimerOverFourSeconds;
 
+    private bool isGameplayMusicOn;
+
 
 
     // Member Variables for Timer Function
@@ -79,8 +81,11 @@ public class GameManager : MonoBehaviour
         // between each starting position of the wings on the y-axis
         posSpacingLength = maxHeight / 10;
 
-        // Initialize the isTimerOverFourSeconds bool as true to start the game
+        // Initialize the isTimerOverFourSeconds bool to true to start the game
         isTimerOverFourSeconds = true;
+
+        // Initialize the isGameplayMusicOn bool to false to commence the game
+        isGameplayMusicOn = false;
     }
 
 
@@ -88,8 +93,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         if (isTimerOverFourSeconds)
             {
             // Generate the element position reference for the startingYCoordArray
@@ -118,6 +121,15 @@ public class GameManager : MonoBehaviour
             // Reset the timer to zero
             timer = 0.0f;
         }
+
+
+        // Check if the gameplay music is off at this moment
+        if (!isGameplayMusicOn)
+        {
+            audioManagerScript.PlayGameplayMusic();
+            isGameplayMusicOn = true;
+        }
+
         
     }
 

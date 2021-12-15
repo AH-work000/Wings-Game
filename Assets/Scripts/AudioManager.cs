@@ -11,13 +11,19 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip wingHitSound;
 
+    [SerializeField]
+    private AudioClip gameplayMusic;
+
 
     // Member variables -- AudioSources of GameObjects
     [SerializeField]
     private AudioSource hotSauceSprayAudioSource;
 
     [SerializeField]
-    private AudioSource chickenWingAudioSource; 
+    private AudioSource chickenWingAudioSource;
+
+    [SerializeField]
+    private AudioSource backgroundAudioSource;
 
 
     // Start is called before the first frame update
@@ -50,8 +56,17 @@ public class AudioManager : MonoBehaviour
     public void PlayHitSound()
     {
         chickenWingAudioSource.clip = wingHitSound;
-        chickenWingAudioSource.volume = 120.0f;
         chickenWingAudioSource.Play();
+    }
+
+
+    // Method: Play the gameplay background music on loop
+    public void PlayGameplayMusic()
+    {
+        backgroundAudioSource.clip = gameplayMusic;
+        backgroundAudioSource.volume = 0.25f;
+        backgroundAudioSource.loop = true;
+        backgroundAudioSource.Play();
     }
 
 }
