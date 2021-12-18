@@ -110,4 +110,11 @@ public class ProjectileManager : MonoBehaviour
         this.transform.position = Vector3.Lerp(oldPos, newPos, timeFraction);
     }
 
+
+    // Method: When the projectile collides with a Chicken Wing, destroy the prefab
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+    }
+
 }

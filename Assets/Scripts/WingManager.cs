@@ -98,7 +98,7 @@ public class WingManager : MonoBehaviour
 
             // Destroy the Wing Prefab
             // (i.e. after the death animation is finished playing)
-            Invoke("WingDestroy", 1.5f);
+            Invoke("WingDestroy", 1.8f);
 
         }
     }
@@ -142,8 +142,8 @@ public class WingManager : MonoBehaviour
 
 
 
-    // Method: Call the destoryWingPrefab Method of the Chicken Wing
-    // that got shot by a projectile
+    // Method: Change the hasHit bool of the Chicken Wing to true
+    // It happens when the chicken wing have been hit by a projectile
     private void OnTriggerEnter(Collider other)
     {
         // Set the hasHit boolean to true
