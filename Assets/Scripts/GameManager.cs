@@ -15,12 +15,9 @@ public class GameManager : MonoBehaviour
     public WingManager wingManagerScript;
 
 
-
     // Member Variables for Prefabs
-
     [SerializeField]
     private GameObject chickenWing;
-
 
 
     // Member Variables that concerns the Main Camera
@@ -38,24 +35,22 @@ public class GameManager : MonoBehaviour
     private float posSpacingLength;
 
 
-
     // Temp Member Variables -- ONLY FOR TESTING; TO BE DELETED LATER
 
     // Bool Member Variables
-    private bool isTimerOverFourSeconds;
-
     private bool isGameplayMusicOn;
-
 
 
     // Member Variables for Timer Function
     private float timer;
 
 
-
     // Member variable array for StartingYCoord Pos of the Chicken Wing Prefab
     private float[] startingYCoordArray = new float[] { 2.5f, 3.5f, 4.5f, 5.5f, 6.5f, 7.5f };
 
+
+    // Member variables for GameMode Selections
+    public enum GameMode { Easy = 4, Medium = 3, Hard = 2 };
 
 
     // Start is called before the first frame update
@@ -81,9 +76,6 @@ public class GameManager : MonoBehaviour
         // between each starting position of the wings on the y-axis
         posSpacingLength = maxHeight / 10;
 
-        // Initialize the isTimerOverFourSeconds bool to true to start the game
-        isTimerOverFourSeconds = true;
-
         // Initialize the isGameplayMusicOn bool to false to commence the game
         isGameplayMusicOn = false;
     }
@@ -93,34 +85,22 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isTimerOverFourSeconds)
+        // Check if the timer is over or equal to the interval provided by the GameMode
+        if (timer >= (float)GameMode.Easy)
             {
             // Generate the element position reference for the startingYCoordArray
-            int yCoordArrayElementPosition = Random.Range(0, 5);
+            int yCoordArrayElementPosition = Random.Range(0, 6);
 
             // Instantiate the Chicken Wing as the following position
             CreateChickenWing(startingYCoordArray[yCoordArrayElementPosition]);
 
-            // Once the chicken have been launch -- make isTimerOverFourSeconds false
-            // as a chicken wing prefab have just been created
-            isTimerOverFourSeconds = false;
-
+            // Once the chicken have been launch -- Call the ResetTimer Method
+            ResetTimer();
             }
 
 
         // Timer -- Add the time.deltaTime of each frame to the timer member variable 
         timer += Time.deltaTime;
-        // Debug.Log("The current time since starting the game is: " + timer);
-
-
-        // Check if timer is over four seconds
-        if (timer >= 4.0f)
-        {
-            isTimerOverFourSeconds = true;
-
-            // Reset the timer to zero
-            timer = 0.0f;
-        }
 
 
         // Check if the gameplay music is off at this moment
@@ -129,7 +109,6 @@ public class GameManager : MonoBehaviour
             audioManagerScript.PlayGameplayMusic();
             isGameplayMusicOn = true;
         }
-
         
     }
 
@@ -147,7 +126,6 @@ public class GameManager : MonoBehaviour
 
             // Convert yScreenPos from Screen Point to World Space
             float yCoordStartingPos = GetYCoordInWorldSpace(yScreenPos);
-
 
             return yCoordStartingPos;
         }
@@ -188,6 +166,14 @@ public class GameManager : MonoBehaviour
             // Return just the y property as the Y Coordinate of the Starting Position
             // of the wing in World Space -- Mathf.Abs is added to make the return value positive
             return newVector.y;
+        }
+
+
+
+        // Method: Reset the timer to zero
+        private void ResetTimer()
+        {
+            timer = 0.0f;
         }
 
 }

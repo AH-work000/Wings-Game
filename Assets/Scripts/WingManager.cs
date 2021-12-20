@@ -12,10 +12,6 @@ public class WingManager : MonoBehaviour
     private float maxWidth;
 
 
-    // Member variables for GameMode Selections
-    public enum GameMode {Easy = 4, Medium = 2, Hard = 1};
-
-
     // Member variables for the Animator of the Chicken Wing
     [SerializeField]
     private Animator wingAnimator;
@@ -71,7 +67,7 @@ public class WingManager : MonoBehaviour
         if (!hasHit)
         {
             // Do the lerp where the game mode is set to easy (timeDuration = (Easy)4.0f)
-            DoLerp((float)GameMode.Easy);
+            DoLerp((float)GameManager.GameMode.Easy);
         }
 
         // Check if the current pos of the wing is out of bounds
