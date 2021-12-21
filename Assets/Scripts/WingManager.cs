@@ -28,6 +28,8 @@ public class WingManager : MonoBehaviour
 
     private bool soundIsOn;
 
+    private bool isPointAdded;
+
 
     void Awake()
     {
@@ -58,6 +60,10 @@ public class WingManager : MonoBehaviour
         // Initialize the soundIsOn bool variable as false
         // It's since the chicken wing prefab had not been hit
         soundIsOn = false;
+
+        // Initialize the isPointAdded bool variable as false
+        // It's since the chicken wing prefab had not been hit
+        isPointAdded = false;
     }
 
     // Update is called once per frame
@@ -79,6 +85,7 @@ public class WingManager : MonoBehaviour
         // Check if a chicken wing have been hit by checking if the hasHit bool is true
         if (hasHit)
         {
+
             // Check if the soundIsOn bool is set to false 
             if (!soundIsOn)
             {
@@ -89,8 +96,20 @@ public class WingManager : MonoBehaviour
                 soundIsOn = true;
             }
 
+            
+           // Check if +10 point have been added to the score
+           if (!isPointAdded)
+            {
+                // Add +10 to the score text
+                gameManager.inGameUIScript.AddPoints();
+
+                isPointAdded = true;
+            }
+           
+
             // Play the death animation 
             StartDeadAnim();
+
 
             // Destroy the Wing Prefab
             // (i.e. after the death animation is finished playing)

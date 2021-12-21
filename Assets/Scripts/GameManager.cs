@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public WingManager wingManagerScript;
 
+    [SerializeField]
+    public InGameUIManager inGameUIScript;
+
 
     // Member Variables for Prefabs
     [SerializeField]
