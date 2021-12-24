@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,9 +19,11 @@ public class GameManager : MonoBehaviour
     public InGameUIManager inGameUIScript;
 
 
+
     // Member Variables for Prefabs
     [SerializeField]
     private GameObject chickenWing;
+
 
 
     // Member Variables that concerns the Main Camera
@@ -36,6 +39,12 @@ public class GameManager : MonoBehaviour
     private float inGameUIHeight;
 
     private float posSpacingLength;
+
+
+    // Bool Member Variables -- Life-Indicators
+        private bool missedOneWing = false;
+
+        private bool missedTwoWing = false;
 
 
     // Temp Member Variables -- ONLY FOR TESTING; TO BE DELETED LATER
@@ -134,11 +143,43 @@ public class GameManager : MonoBehaviour
         }
 
 
+
         // Method: Create and launch a Chicken Wing Prefab
         private void CreateChickenWing(float yCoordPos)
         {
             Instantiate(chickenWing, new Vector3(GetXCoordInWorldSpace(-30), SetYCoordStartingPos(yCoordPos), 0), Quaternion.identity);
         }
+
+
+
+        // Method: Check for how many icons are left in the life-indicators and
+        // remove a chicken wing icon based on that
+        public void RemoveChickenWingIcon()
+        {
+        // Check if the life-indicator has all three chicken wing icons
+        if (!missedOneWing)
+        {
+            // Update the life-indicator to lose the first chicken wing icon
+            inGameUIScript.RemoveChickenWingIcon('A');
+
+            // Change the missedOneWing bool to true
+            missedOneWing = true;
+        }
+        else if (!missedTwoWing)
+        {
+            // Update the life-indicator to lose the second chicken wing icon
+            inGameUIScript.RemoveChickenWingIcon('B');
+
+            // Change the missedTwoWing bool to true
+            missedTwoWing = true;
+        }
+        else
+        {
+            // Update the life-indicator to lose the final chicken wing icon
+            inGameUIScript.RemoveChickenWingIcon('C');
+        }
+
+    }
 
 
 

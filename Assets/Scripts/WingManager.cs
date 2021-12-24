@@ -23,12 +23,13 @@ public class WingManager : MonoBehaviour
     private GameManager gameManager;
 
 
-    // Bool Member variables
+    // Bool Member Variables
     private bool hasHit;
 
     private bool soundIsOn;
 
     private bool isPointAdded;
+
 
 
     void Awake()
@@ -79,8 +80,14 @@ public class WingManager : MonoBehaviour
         // Check if the current pos of the wing is out of bounds
         if (IsWingsXPosOutOfBounds())
         {
+            // Destroy the wing using the WingDestroy() method
             WingDestroy();
+
+            // If this is the 1st - 3rd chicken wing that have missed being shot,
+            // remove a life (icon) from the life-indicator 
+            gameManager.RemoveChickenWingIcon();
         }
+
 
         // Check if a chicken wing have been hit by checking if the hasHit bool is true
         if (hasHit)
@@ -148,10 +155,10 @@ public class WingManager : MonoBehaviour
          * Return true if the x property of the wing screen pos is:
          * 
          * The x property of the wing screen pos is equal to or
-         * greater than the (maximum width + 60.0f) of the camera
+         * greater than the (maximum width + 32.0f) of the camera
         */
 
-        return projectileScreenPos.x >= maxWidth + 60.0f;
+        return projectileScreenPos.x >= maxWidth + 45.0f;
 
     }
 

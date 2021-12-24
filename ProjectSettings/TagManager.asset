@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameManager
+  - Icon1
+  - Icon2
+  - Icon3
   layers:
   - Default
   - TransparentFX
