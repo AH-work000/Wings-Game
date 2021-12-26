@@ -74,7 +74,7 @@ public class WingManager : MonoBehaviour
         if (!hasHit)
         {
             // Do the lerp where the game mode is set to easy (timeDuration = (Easy)4.0f)
-            DoLerp((float)GameManager.GameMode.Easy);
+            DoLerp((float)GameManager.GameMode.Hard);
         }
 
         // Check if the current pos of the wing is out of bounds

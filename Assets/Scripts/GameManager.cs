@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,16 +42,16 @@ public class GameManager : MonoBehaviour
     private float posSpacingLength;
 
 
-    // Bool Member Variables -- Life-Indicators
+    // Bool Member Variables
+    private bool isGameplayMusicOn;
+
+    private bool isTheGameOver;
+
+
+        // Bool Member Variables -- Life-Indicators
         private bool missedOneWing = false;
 
         private bool missedTwoWing = false;
-
-
-    // Temp Member Variables -- ONLY FOR TESTING; TO BE DELETED LATER
-
-    // Bool Member Variables
-    private bool isGameplayMusicOn;
 
 
     // Member Variables for Timer Function
@@ -90,6 +91,9 @@ public class GameManager : MonoBehaviour
 
         // Initialize the isGameplayMusicOn bool to false to commence the game
         isGameplayMusicOn = false;
+
+        // Initialize the isTheGameOver bool to false
+        isTheGameOver = false;
     }
 
 
@@ -98,7 +102,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // Check if the timer is over or equal to the interval provided by the GameMode
-        if (timer >= (float)GameMode.Easy)
+        // and less than three chicken wings have been missed
+        if (timer >= (float)GameMode.Hard & !isTheGameOver)
             {
             // Generate the element position reference for the startingYCoordArray
             int yCoordArrayElementPosition = Random.Range(0, 6);
@@ -177,6 +182,13 @@ public class GameManager : MonoBehaviour
         {
             // Update the life-indicator to lose the final chicken wing icon
             inGameUIScript.RemoveChickenWingIcon('C');
+
+            // Make the isTheGameOver bool to be true as at least three wings have been missed
+            // This stops the game from generating more chicken wings
+            isTheGameOver = true;
+
+            // Load the Gameover Scene using Async Loading
+            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
         }
 
     }
