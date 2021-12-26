@@ -70,12 +70,13 @@ public class WingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Do the lerp movement movement unless the chicken wing have been hit
+        // Do the Lerp Movement unless the chicken wing have been hit
         if (!hasHit)
         {
-            // Do the lerp where the game mode is set to easy (timeDuration = (Easy)4.0f)
-            DoLerp((float)GameManager.GameMode.Hard);
+            // Do the lerp where the game mode is set to easy (timeDuration = (Hard)2.0f)
+            DoLerp((float)GameManager.GameMode.Hard, 4.0f);
         }
+
 
         // Check if the current pos of the wing is out of bounds
         if (IsWingsXPosOutOfBounds())
@@ -128,13 +129,13 @@ public class WingManager : MonoBehaviour
 
 
     // Method: Do the lerp movement for the Chicken Wing
-    private void DoLerp(float timeDuration)
+    private void DoLerp(float timeDuration, float endXPos)
     {
         // Create a new variable and make it get the current position of the Chicken Wing
         Vector3 oldPos = this.transform.position;
 
         // Create a new variable that stores the end position of the Chicken Wing
-        Vector3 newPos = new Vector3(this.transform.position.x + 4.0f, this.transform.position.y); 
+        Vector3 newPos = new Vector3(this.transform.position.x + endXPos, this.transform.position.y); 
 
         // Divide the current time.deltaTime by timeDuration
         float timeFraction = Time.deltaTime / timeDuration;

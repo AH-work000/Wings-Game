@@ -21,10 +21,9 @@ public class GameManager : MonoBehaviour
 
 
 
-    // Member Variables for Prefabs
+    // Member Variables for Prefabs and GameObjects
     [SerializeField]
     private GameObject chickenWing;
-
 
 
     // Member Variables that concerns the Main Camera
@@ -43,9 +42,11 @@ public class GameManager : MonoBehaviour
 
 
     // Bool Member Variables
-    private bool isGameplayMusicOn;
+    private bool isGameplayMusicOn = false;
 
-    private bool isTheGameOver;
+    private bool isTheGameOver = false;
+
+    private bool sceneLoaded = false;
 
 
         // Bool Member Variables -- Life-Indicators
@@ -88,12 +89,6 @@ public class GameManager : MonoBehaviour
         // Initialize the posSpacingLength variable --> The distance
         // between each starting position of the wings on the y-axis
         posSpacingLength = maxHeight / 10;
-
-        // Initialize the isGameplayMusicOn bool to false to commence the game
-        isGameplayMusicOn = false;
-
-        // Initialize the isTheGameOver bool to false
-        isTheGameOver = false;
     }
 
 
@@ -187,8 +182,17 @@ public class GameManager : MonoBehaviour
             // This stops the game from generating more chicken wings
             isTheGameOver = true;
 
-            // Load the Gameover Scene using Async Loading
-            SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            // Check if the Gameover scene is loaded
+            if (!sceneLoaded)
+            {
+                // Load the Gameover Scene using Async Loading
+                SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+
+                // Make the sceneLoaded bool to be true so that only one copy of Gameover scene is loaded
+                sceneLoaded = true;
+
+            }
+
         }
 
     }

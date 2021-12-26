@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wingAnimator: {fileID: 649301178203940949}
+  hasThreeMisses: 0
 --- !u!65 &451190333180401195
 BoxCollider:
   m_ObjectHideFlags: 0
