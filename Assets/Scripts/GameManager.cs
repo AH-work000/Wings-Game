@@ -185,8 +185,14 @@ public class GameManager : MonoBehaviour
             // Check if the Gameover scene is loaded
             if (!sceneLoaded)
             {
+                // Pause the ability for the player to move the hot spray machine and shoot its projectile
+                inputManagerScript.isItGameOver = true;
+
                 // Load the Gameover Scene using Async Loading
                 SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+
+                // Play the gameover music
+                StartCoroutine(audioManagerScript.PlayGameOverMusic());
 
                 // Make the sceneLoaded bool to be true so that only one copy of Gameover scene is loaded
                 sceneLoaded = true;

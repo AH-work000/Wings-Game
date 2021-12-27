@@ -66,6 +66,9 @@ public class InputManager : MonoBehaviour
     private bool hasLeftFacingPos;
 
 
+    // Other Bool Member Variables
+    public bool isItGameOver = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -102,9 +105,12 @@ public class InputManager : MonoBehaviour
             }
 
 
-        // Input to shoot the projectile
 
-             
+        // Check if the game is not over yet
+        if (!isItGameOver)
+        {
+            // Input to shoot the projectile
+
             // If the 'X' Key is pressed and the timer is over 0.5 seconds in value
             // --> Launch a Hotsauce Capsule Projectile
             if (Input.GetKeyDown(KeyCode.X) && IsTimerOverHalfASecond())
@@ -118,9 +124,10 @@ public class InputManager : MonoBehaviour
                 // Reset the timer to 0.0f;
                 timer = 0.0f;
             }
-  
 
-        // Inputs for the rotation of the Hotsauce Spray Machine
+
+
+            // Inputs for the rotation of the Hotsauce Spray Machine
 
             // If the 'E' Key is pressed --> Rotate the Hotsauce Spray Machine 45 degrees (RightPos)
             if (Input.GetKeyDown(KeyCode.E))
@@ -157,7 +164,7 @@ public class InputManager : MonoBehaviour
 
 
 
-        // Hotsauce Spray Movement
+            // Hotsauce Spray Movement
 
             // Get the horizontal axis where it moves 0.05 metres per second
             movement.x += Input.GetAxisRaw("Horizontal") * 0.05f * Time.deltaTime;
@@ -180,12 +187,14 @@ public class InputManager : MonoBehaviour
                 if (hotsauceSprayRenderer.transform.position.x >= ConvertScreenXPosToWorld(maxDistanceXPos))
                 {
                     hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(maxDistanceXPos), hotsauceSprayRenderer.transform.position.y);
-                } else
+                }
+                else
                 {
                     hotsauceSprayRenderer.transform.position = new Vector3(ConvertScreenXPosToWorld(minDistanceXPos), hotsauceSprayRenderer.transform.position.y);
                 }
-            
+
             }
+        }
 
     }
 

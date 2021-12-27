@@ -14,6 +14,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip gameplayMusic;
 
+    [SerializeField]
+    private AudioClip gameoverMusic;
+
 
     // Member variables -- AudioSources of GameObjects
     [SerializeField]
@@ -66,6 +69,18 @@ public class AudioManager : MonoBehaviour
         backgroundAudioSource.clip = gameplayMusic;
         backgroundAudioSource.volume = 0.25f;
         backgroundAudioSource.loop = true;
+        backgroundAudioSource.Play();
+    }
+
+
+    // Method: Play the game over music
+    public IEnumerator PlayGameOverMusic()
+    {
+        backgroundAudioSource.Stop();
+        yield return new WaitForSeconds(0.4f);
+        backgroundAudioSource.clip = gameoverMusic;
+        backgroundAudioSource.volume = 0.3f;
+        backgroundAudioSource.loop = false;
         backgroundAudioSource.Play();
     }
 

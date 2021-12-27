@@ -8142,6 +8142,7 @@ MonoBehaviour:
   hotSauceSpraySound: {fileID: 8300000, guid: 4290a810a8c4b485ca1db41f011be81b, type: 3}
   wingHitSound: {fileID: 8300000, guid: 6b029cc4977e241bbbfd3733a8901814, type: 3}
   gameplayMusic: {fileID: 8300000, guid: 12f791ace4f4f4792a1730c825b286ac, type: 3}
+  gameoverMusic: {fileID: 8300000, guid: 15867861af18a40f88464fabec2b8e3e, type: 3}
   hotSauceSprayAudioSource: {fileID: 1145614310}
   chickenWingAudioSource: {fileID: 2028212722}
   backgroundAudioSource: {fileID: 1261915860}
@@ -8863,6 +8864,7 @@ MonoBehaviour:
   hotSauceProjectileUpFacing: {fileID: 6677381152003864962, guid: 2baa3fd1f6d47419aafafdecfd71929f, type: 3}
   hotSauceProjectileRightFacing: {fileID: 7996397528701614734, guid: 5a178886b339c45fdadfe77360c64ce8, type: 3}
   hotSauceProjectileLeftFacing: {fileID: 2159322109964627870, guid: 608f1dd25888f4e849780bcf863220e6, type: 3}
+  isItGameOver: 0
 --- !u!1 &2128800717
 GameObject:
   m_ObjectHideFlags: 0

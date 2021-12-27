@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 877698051}
   - component: {fileID: 877698050}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Gameover UI Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
