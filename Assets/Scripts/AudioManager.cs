@@ -17,8 +17,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip gameoverMusic;
 
+    [SerializeField]
+    private AudioClip buttonClickedSound; 
 
-    // Member variables -- AudioSources of GameObjects
+
+    // Member variables -- AudioSources of GameObjects in the Gameplay-Level Scene
     [SerializeField]
     private AudioSource hotSauceSprayAudioSource;
 
@@ -82,6 +85,15 @@ public class AudioManager : MonoBehaviour
         backgroundAudioSource.volume = 0.3f;
         backgroundAudioSource.loop = false;
         backgroundAudioSource.Play();
+    }
+
+
+    // Method: Play the Button Clicked Sound when a UI button is clicked
+    public void PlayButtonClickedSound(AudioSource audiosource)
+    {
+        audiosource.clip = buttonClickedSound;
+        audiosource.loop= false;
+        audiosource.Play();
     }
 
 }

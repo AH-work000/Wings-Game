@@ -1,0 +1,205 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4213283918921910265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4213283918921910267}
+  - component: {fileID: 4213283918921910266}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: GameManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4213283918921910267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213283918921910265}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4213283919391882229}
+  - {fileID: 4213283919213875208}
+  - {fileID: 4213283919471766787}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4213283918921910266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213283918921910265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac7b39a62e004df39c84e1c83916d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputManagerScript: {fileID: 4213283919213875209}
+  audioManagerScript: {fileID: 4213283919391882228}
+  wingManagerScript: {fileID: 6131245068801596154, guid: 9df32526a43654693ac9d584039f078b, type: 3}
+  inGameUIScript: {fileID: 4213283919471766788}
+  chickenWing: {fileID: 649301178203940946, guid: 9df32526a43654693ac9d584039f078b, type: 3}
+  mainCamera: {fileID: 0}
+--- !u!1 &4213283919213875207
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4213283919213875208}
+  - component: {fileID: 4213283919213875209}
+  m_Layer: 0
+  m_Name: Input Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4213283919213875208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213283919213875207}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4213283918921910267}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4213283919213875209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213283919213875207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650fdc040093e474c986fcc6d5ede316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hotsauceSprayRenderer: {fileID: 0}
+  mainCamera: {fileID: 0}
+  gameManager: {fileID: 4213283918921910266}
+  hotSauceSprayLeftPos: {fileID: 21300000, guid: c5bedfe2f01d54f06aac4f1515f6f871, type: 3}
+  hotSauceSprayUpPos: {fileID: 21300000, guid: b8b93a17543fe4510bcec7038607e336, type: 3}
+  hotSauceSprayRightPos: {fileID: 21300000, guid: c106c653ccdbe4616b4c32aafdc691d0, type: 3}
+  hotSauceProjectileUpFacing: {fileID: 6677381152003864962, guid: 2baa3fd1f6d47419aafafdecfd71929f, type: 3}
+  hotSauceProjectileRightFacing: {fileID: 7996397528701614734, guid: 5a178886b339c45fdadfe77360c64ce8, type: 3}
+  hotSauceProjectileLeftFacing: {fileID: 2159322109964627870, guid: 608f1dd25888f4e849780bcf863220e6, type: 3}
+  isItGameOver: 0
+--- !u!1 &4213283919391882227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4213283919391882229}
+  - component: {fileID: 4213283919391882228}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4213283919391882229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213283919391882227}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4213283918921910267}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4213283919391882228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213283919391882227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9885df5e18004bb2adfd185bea44495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hotSauceSpraySound: {fileID: 8300000, guid: 4290a810a8c4b485ca1db41f011be81b, type: 3}
+  wingHitSound: {fileID: 8300000, guid: 6b029cc4977e241bbbfd3733a8901814, type: 3}
+  gameplayMusic: {fileID: 8300000, guid: 12f791ace4f4f4792a1730c825b286ac, type: 3}
+  gameoverMusic: {fileID: 8300000, guid: 15867861af18a40f88464fabec2b8e3e, type: 3}
+  buttonClickedSound: {fileID: 8300000, guid: c79ae088a0f4a41568a0518b2daa6308, type: 3}
+  hotSauceSprayAudioSource: {fileID: 0}
+  chickenWingAudioSource: {fileID: 0}
+  backgroundAudioSource: {fileID: 0}
+--- !u!1 &4213283919471766786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4213283919471766787}
+  - component: {fileID: 4213283919471766788}
+  m_Layer: 0
+  m_Name: In Game UI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4213283919471766787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213283919471766786}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.65698034, y: -0.36551073, z: -62.408436}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4213283918921910267}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4213283919471766788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4213283919471766786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a85d9b65aa19474982589fc7acb5656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
+  chickenWingIcon1Image: {fileID: 0}
+  chickenWingIcon2Image: {fileID: 0}
+  chickenWingIcon3Image: {fileID: 0}
