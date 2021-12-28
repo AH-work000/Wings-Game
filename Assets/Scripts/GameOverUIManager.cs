@@ -19,7 +19,10 @@ public class GameOverUIManager : MonoBehaviour
 
     // Member Variables -- Script Fields
     [SerializeField]
-    private GameManager gameManager; 
+    private GameManager gameManagerScript;
+
+    [SerializeField]
+    private LoadManager loadManagerScript;
 
 
     // Start is called before the first frame update
@@ -44,17 +47,17 @@ public class GameOverUIManager : MonoBehaviour
     public void ReloadLevel()
     {
         // Play the Button Clicked Sound 
-        gameManager.audioManagerScript.PlayButtonClickedSound(buttonAudioSource);
+        gameManagerScript.audioManagerScript.PlayButtonClickedSound(buttonAudioSource);
 
-        // Debug Print out Message
-        Debug.Log("Restart Button is clicked!");
+        // Restart the game by calling the Restart game method in the Load Manager
+        loadManagerScript.RestartGame();
     }
 
     // Method: Destroy this scene and the Gameplay Scene and load the main menu
     public void LoadMainMenu()
     {
         // Play the Button Clicked Sound 
-        gameManager.audioManagerScript.PlayButtonClickedSound(buttonAudioSource);
+        gameManagerScript.audioManagerScript.PlayButtonClickedSound(buttonAudioSource);
 
         // Debug Print out Message
         Debug.Log("Exit Button is clicked!");

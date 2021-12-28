@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public InGameUIManager inGameUIScript;
 
+    [SerializeField]
+    public LoadManager loadManagerScript;
 
 
     // Member Variables for Prefabs and GameObjects
@@ -188,8 +189,8 @@ public class GameManager : MonoBehaviour
                 // Pause the ability for the player to move the hot spray machine and shoot its projectile
                 inputManagerScript.isItGameOver = true;
 
-                // Load the Gameover Scene using Async Loading
-                SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+                // Load the Gameover Scene by calling the LoadGameOverScene method in the Load Manager
+                loadManagerScript.LoadGameOverScene();
 
                 // Play the gameover music
                 StartCoroutine(audioManagerScript.PlayGameOverMusic());
