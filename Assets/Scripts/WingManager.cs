@@ -73,8 +73,8 @@ public class WingManager : MonoBehaviour
         // Do the Lerp Movement unless the chicken wing have been hit
         if (!hasHit)
         {
-            // Do the lerp where the game mode is set to easy (timeDuration = (Hard)2.0f)
-            DoLerp((float)GameManager.GameMode.Hard, 4.0f);
+            // Do the lerp where the game mode is set to easy (timeDuration = (Hard)0.5f)
+            DoLerp(0.5f, 4.0f); // 0.5f translates to hard mode -- TO BE CHANGED LATER ONCE DIFFICULTY MODE PAGE IS COMPLETE
         }
 
 
