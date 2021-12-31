@@ -74,7 +74,7 @@ public class WingManager : MonoBehaviour
         if (!hasHit)
         {
             // Do the lerp where the game mode is set to easy (timeDuration = (Hard)0.5f)
-            DoLerp(0.5f, 4.0f); // 0.5f translates to hard mode -- TO BE CHANGED LATER ONCE DIFFICULTY MODE PAGE IS COMPLETE
+            DoLerp(0.6f, 6.0f); // 0.6f translates to hard mode -- TO BE CHANGED LATER ONCE DIFFICULTY MODE PAGE IS COMPLETE
         }
 
 
