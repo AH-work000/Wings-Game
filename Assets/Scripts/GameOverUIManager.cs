@@ -53,11 +53,15 @@ public class GameOverUIManager : MonoBehaviour
         loadManagerScript.RestartGame();
     }
 
+
     // Method: Destroy this scene and the Gameplay Scene and load the main menu
     public void LoadMainMenu()
     {
         // Play the Button Clicked Sound 
         gameManagerScript.audioManagerScript.PlayButtonClickedSound(buttonAudioSource);
+
+        // Load the main menu by calling the LoadMainMenu method in the Load Manager
+        loadManagerScript.LoadMainMenu();
 
         // Debug Print out Message
         Debug.Log("Exit Button is clicked!");
