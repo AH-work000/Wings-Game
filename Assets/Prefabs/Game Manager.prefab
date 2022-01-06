@@ -50,6 +50,7 @@ MonoBehaviour:
   audioManagerScript: {fileID: 4213283919391882228}
   wingManagerScript: {fileID: 6131245068801596154, guid: 9df32526a43654693ac9d584039f078b, type: 3}
   inGameUIScript: {fileID: 4213283919471766788}
+  loadManagerScript: {fileID: 0}
   chickenWing: {fileID: 649301178203940946, guid: 9df32526a43654693ac9d584039f078b, type: 3}
   mainCamera: {fileID: 0}
 --- !u!1 &4213283919213875207
