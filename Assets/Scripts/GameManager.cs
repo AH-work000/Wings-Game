@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
                 inputManagerScript.isItGameOver = true;
 
                 // Load the Gameover Scene by calling the LoadGameOverScene method in the Load Manager
-                loadManagerScript.LoadGameOverScene();
+                loadManagerScript.LoadSceneOverAnotherScene(LoadManager.SceneMode.GameOver);
 
                 // Play the gameover music
                 StartCoroutine(audioManagerScript.PlayGameOverMusic());

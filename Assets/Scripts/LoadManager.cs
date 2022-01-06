@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LoadManager : MonoBehaviour
 {
+    // Member variables for SceneMode Selections
+    public enum SceneMode {MainMenu, GamePlay, GameOver};
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +22,7 @@ public class LoadManager : MonoBehaviour
         
     }
 
+    /* 
     // Method: Load the Gameover Scene (Game-Over Pop-Up Window)
     public void LoadGameOverScene()
     {
@@ -44,6 +50,28 @@ public class LoadManager : MonoBehaviour
         // Then Load the Main Scene
         SceneManager.LoadScene(0);
 
+    } */
+
+
+
+    // Method: Load a Scene using the LoadSceneAsync Method
+    public void LoadScene(SceneMode scene)
+    {
+        SceneManager.LoadSceneAsync((int)scene);
+    }
+
+
+    // Method: Load a Scene over another scene using the LoadSceneAsync Method
+    public void LoadSceneOverAnotherScene(SceneMode scene)
+    {
+        SceneManager.LoadSceneAsync((int)scene, LoadSceneMode.Additive);
+    }
+
+
+    // Method: Unload a Scene using the UnloadSceneAsync Method
+    public void UnloadScene(SceneMode scene)
+    {
+        SceneManager.UnloadSceneAsync((int)scene);
     }
 
 }

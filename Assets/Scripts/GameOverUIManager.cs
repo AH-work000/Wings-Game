@@ -33,13 +33,13 @@ public class GameOverUIManager : MonoBehaviour
 
         // Add Listener to the exit button variable
         exit.onClick.AddListener(LoadMainMenu);
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -50,7 +50,12 @@ public class GameOverUIManager : MonoBehaviour
         gameManagerScript.audioManagerScript.PlayButtonClickedSound(buttonAudioSource);
 
         // Restart the game by calling the Restart game method in the Load Manager
-        loadManagerScript.RestartGame();
+
+        // Unload the Gameover Scene using Async Loading
+        loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver);
+
+        // Load back the Gameplay Scene
+        loadManagerScript.LoadScene(LoadManager.SceneMode.GamePlay);
     }
 
 
@@ -60,12 +65,11 @@ public class GameOverUIManager : MonoBehaviour
         // Play the Button Clicked Sound 
         gameManagerScript.audioManagerScript.PlayButtonClickedSound(buttonAudioSource);
 
-        // Load the main menu by calling the LoadMainMenu method in the Load Manager
-        loadManagerScript.LoadMainMenu();
+        // Unload both the Gameover and Gameplay scenes using Async Loading
+        loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver);
+        loadManagerScript.UnloadScene(LoadManager.SceneMode.GamePlay);
 
-        // Debug Print out Message
-        Debug.Log("Exit Button is clicked!");
+        // Then Load the Main Scene
+        loadManagerScript.LoadScene(LoadManager.SceneMode.MainMenu);
     }
-
-
 }
