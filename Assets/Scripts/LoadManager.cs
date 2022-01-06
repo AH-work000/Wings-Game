@@ -6,14 +6,18 @@ using UnityEngine.SceneManagement;
 public class LoadManager : MonoBehaviour
 {
     // Member variables for SceneMode Selections
-    public enum SceneMode {MainMenu, GamePlay, GameOver};
+    public enum SceneMode {MainMenu, GameMode, GamePlay, GameOver};
+
+    // Member variable for storing a variable reference to the 
+    public SceneMode currentScene;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Initialising the currentScene variable
+        // currentScene = SceneMode.MainMenu; -- TO BE UNCOMMENTED LATER
     }
 
     // Update is called once per frame
@@ -26,6 +30,9 @@ public class LoadManager : MonoBehaviour
     public void LoadScene(SceneMode scene)
     {
         SceneManager.LoadSceneAsync((int)scene);
+
+        // Make the scene param to be the currentScene
+        currentScene = scene;
     }
 
 
@@ -33,6 +40,9 @@ public class LoadManager : MonoBehaviour
     public void LoadSceneOverAnotherScene(SceneMode scene)
     {
         SceneManager.LoadSceneAsync((int)scene, LoadSceneMode.Additive);
+
+        // Make the scene param to be the currentScene
+        currentScene = scene;
     }
 
 
@@ -40,6 +50,12 @@ public class LoadManager : MonoBehaviour
     public void UnloadScene(SceneMode scene)
     {
         SceneManager.UnloadSceneAsync((int)scene);
+    }
+
+    // Method: Check if the current scene equals to the scene that is given in the param
+    public bool isTheCurrentScene(SceneMode scene)
+    {
+        return scene == currentScene;
     }
 
 }

@@ -97,32 +97,36 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if the timer is over or equal to the interval provided by the GameMode
-        // and less than three chicken wings have been missed
-        if (timer >= (float)GameMode.Hard & !isTheGameOver)
+        if (loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay) || loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GameOver))
+        {
+            // Check if the timer is over or equal to the interval provided by the GameMode
+            // and less than three chicken wings have been missed
+            if (timer >= (float)GameMode.Hard & !isTheGameOver)
             {
-            // Generate the element position reference for the startingYCoordArray
-            int yCoordArrayElementPosition = Random.Range(0, 6);
+                // Generate the element position reference for the startingYCoordArray
+                int yCoordArrayElementPosition = Random.Range(0, 6);
 
-            // Instantiate the Chicken Wing as the following position
-            CreateChickenWing(startingYCoordArray[yCoordArrayElementPosition]);
+                // Instantiate the Chicken Wing as the following position
+                CreateChickenWing(startingYCoordArray[yCoordArrayElementPosition]);
 
-            // Once the chicken have been launch -- Call the ResetTimer Method
-            ResetTimer();
+                // Once the chicken have been launch -- Call the ResetTimer Method
+                ResetTimer();
             }
 
 
-        // Timer -- Add the time.deltaTime of each frame to the timer member variable 
-        timer += Time.deltaTime;
+            // Timer -- Add the time.deltaTime of each frame to the timer member variable 
+            timer += Time.deltaTime;
 
 
-        // Check if the gameplay music is off at this moment
-        if (!isGameplayMusicOn)
-        {
-            audioManagerScript.PlayGameplayMusic();
-            isGameplayMusicOn = true;
+            // Check if the gameplay music is off at this moment
+            if (!isGameplayMusicOn)
+            {
+                audioManagerScript.PlayGameplayMusic();
+                isGameplayMusicOn = true;
+            }
+
         }
-        
+
     }
 
 
