@@ -9,7 +9,15 @@ public class LoadManager : MonoBehaviour
     public enum SceneMode {MainMenu, GameMode, GamePlay, GameOver};
 
     // Member variable for storing a variable reference to the 
-    public SceneMode currentScene;
+    private SceneMode currentScene;
+
+
+    // Awake is the first called before Start
+    void Awake()
+    {
+        // Make the Menu UI is always available between scenes
+        // DontDestroyOnLoad(gameObject);
+    }
 
 
 
@@ -17,7 +25,7 @@ public class LoadManager : MonoBehaviour
     void Start()
     {
         // Initialising the currentScene variable
-        // currentScene = SceneMode.MainMenu; -- TO BE UNCOMMENTED LATER
+        currentScene = SceneMode.MainMenu; 
     }
 
     // Update is called once per frame
@@ -29,7 +37,7 @@ public class LoadManager : MonoBehaviour
     // Method: Load a Scene using the LoadSceneAsync Method
     public void LoadScene(SceneMode scene)
     {
-        SceneManager.LoadSceneAsync((int)scene);
+        SceneManager.LoadScene((int)scene);
 
         // Make the scene param to be the currentScene
         currentScene = scene;
@@ -51,6 +59,7 @@ public class LoadManager : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync((int)scene);
     }
+
 
     // Method: Check if the current scene equals to the scene that is given in the param
     public bool isTheCurrentScene(SceneMode scene)

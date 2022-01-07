@@ -8,6 +8,9 @@ TagManager:
   - Icon1
   - Icon2
   - Icon3
+  - ButtonAudioSource
+  - BasicGameManager
+  - LoadManager
   layers:
   - Default
   - TransparentFX

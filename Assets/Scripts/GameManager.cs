@@ -18,9 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public InGameUIManager inGameUIScript;
 
-    [SerializeField]
-    public LoadManager loadManagerScript;
-
 
     // Member Variables for Prefabs and GameObjects
     [SerializeField]
@@ -68,6 +65,12 @@ public class GameManager : MonoBehaviour
     public enum GameMode { Easy = 4, Medium = 3, Hard = 2 };
 
 
+    // Member Variables for the load manager
+    private GameObject loadManager;
+
+    private LoadManager loadManagerScript;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +93,10 @@ public class GameManager : MonoBehaviour
         // Initialize the posSpacingLength variable --> The distance
         // between each starting position of the wings on the y-axis
         posSpacingLength = maxHeight / 10;
+
+        // Initialize the LoadManager Referenced in the Game Manager
+
+        InitializeLoadManager();
     }
 
 
@@ -245,6 +252,18 @@ public class GameManager : MonoBehaviour
         private void ResetTimer()
         {
             timer = 0.0f;
+        }
+
+
+
+        // Method: Initialize the buttonAudioSource
+        public void InitializeLoadManager()
+        {
+            // Initialize the buttonController by finding that object with the tag "ButtonAudioSource"
+            loadManager = GameObject.FindGameObjectWithTag("LoadManager");
+
+            // Initialize the buttonAudioSource by getting the component from the buttonController object
+            loadManagerScript = loadManager.GetComponent<LoadManager>();
         }
 
 }
