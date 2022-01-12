@@ -11,6 +11,7 @@ TagManager:
   - ButtonAudioSource
   - BasicGameManager
   - LoadManager
+  - MenuManager
   layers:
   - Default
   - TransparentFX

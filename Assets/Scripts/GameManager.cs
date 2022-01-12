@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
 
     private bool sceneLoaded = false;
 
-
         // Bool Member Variables -- Life-Indicators
         private bool missedOneWing = false;
 
@@ -66,9 +65,10 @@ public class GameManager : MonoBehaviour
 
 
     // Member Variables for the load manager
-    private GameObject loadManager;
 
-    private LoadManager loadManagerScript;
+    // Instantiate the below two objects at the first update frame and make sure that they are only spawn once!!!
+    [SerializeField]
+    private LoadManager loadManagerScript; 
 
 
     // Start is called before the first frame update
@@ -93,10 +93,6 @@ public class GameManager : MonoBehaviour
         // Initialize the posSpacingLength variable --> The distance
         // between each starting position of the wings on the y-axis
         posSpacingLength = maxHeight / 10;
-
-        // Initialize the LoadManager Referenced in the Game Manager
-
-        InitializeLoadManager();
     }
 
 
@@ -104,6 +100,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay) || loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GameOver))
         {
             // Check if the timer is over or equal to the interval provided by the GameMode
@@ -201,7 +198,7 @@ public class GameManager : MonoBehaviour
                 inputManagerScript.isItGameOver = true;
 
                 // Load the Gameover Scene by calling the LoadGameOverScene method in the Load Manager
-                loadManagerScript.LoadSceneOverAnotherScene(LoadManager.SceneMode.GameOver);
+                StartCoroutine(loadManagerScript.LoadSceneOverAnotherScene(LoadManager.SceneMode.GameOver));
 
                 // Play the gameover music
                 StartCoroutine(audioManagerScript.PlayGameOverMusic());
@@ -252,18 +249,6 @@ public class GameManager : MonoBehaviour
         private void ResetTimer()
         {
             timer = 0.0f;
-        }
-
-
-
-        // Method: Initialize the buttonAudioSource
-        public void InitializeLoadManager()
-        {
-            // Initialize the buttonController by finding that object with the tag "ButtonAudioSource"
-            loadManager = GameObject.FindGameObjectWithTag("LoadManager");
-
-            // Initialize the buttonAudioSource by getting the component from the buttonController object
-            loadManagerScript = loadManager.GetComponent<LoadManager>();
         }
 
 }

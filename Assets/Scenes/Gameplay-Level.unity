@@ -808,9 +808,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 963194227}
     - target: {fileID: 4213283918921910266, guid: a1e062381aedb416a880d9c424a48700, type: 3}
-      propertyPath: loadManagerScript
+      propertyPath: loadManager
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4213283918921910266, guid: a1e062381aedb416a880d9c424a48700, type: 3}
+      propertyPath: loadManagerScript
+      value: 
+      objectReference: {fileID: 3873246296434999635, guid: 3111c195432714a7fbdb2dc9103435e1, type: 3}
     - target: {fileID: 4213283918921910267, guid: a1e062381aedb416a880d9c424a48700, type: 3}
       propertyPath: m_RootOrder
       value: 5

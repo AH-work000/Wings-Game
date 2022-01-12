@@ -20,7 +20,9 @@ public class GameOverUIManager : MonoBehaviour
     [SerializeField]
     private GameManager gameManagerScript;
 
-    [SerializeField]
+    // Member Variables -- Load Manager Fields
+    private GameObject loadManager;
+    
     private LoadManager loadManagerScript;
 
 
@@ -32,6 +34,13 @@ public class GameOverUIManager : MonoBehaviour
 
         // Add Listener to the exit button variable
         exit.onClick.AddListener(LoadMainMenu);
+
+        // Instantiate the loadManager variable by finding a gameObject with the tag "LoadManager"
+        loadManager = GameObject.FindGameObjectWithTag("LoadManager");
+
+        // Get the loadManagerScript from the loadManager gameObject and
+        // designate it into the loadManagerScript variable
+        loadManagerScript = loadManager.GetComponent<LoadManager>();
 
     }
 
@@ -51,10 +60,10 @@ public class GameOverUIManager : MonoBehaviour
         // Restart the game by calling the Restart game method in the Load Manager
 
         // Unload the Gameover Scene using Async Loading
-        loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver);
+        StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver));
 
         // Load back the Gameplay Scene
-        loadManagerScript.LoadScene(LoadManager.SceneMode.GamePlay);
+        StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GamePlay));
     }
 
 
@@ -64,11 +73,13 @@ public class GameOverUIManager : MonoBehaviour
         // Play the Button Clicked Sound 
         gameManagerScript.audioManagerScript.PlayButtonClickedSound(buttonAudioSource);
 
-        // Unload both the Gameover and Gameplay scenes using Async Loading
-        loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver);
-        loadManagerScript.UnloadScene(LoadManager.SceneMode.GamePlay);
+        Invoke("RestartGame", 0.3f);
+    }
 
-        // Then Load the Main Scene
-        loadManagerScript.LoadScene(LoadManager.SceneMode.MainMenu);
+
+    private void RestartGame()
+    {
+        // Go to the RestartGame method in the load manage script
+        loadManagerScript.RestartGame();
     }
 }
