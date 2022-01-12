@@ -47,3 +47,4 @@ MonoBehaviour:
   loadManagerScript: {fileID: 3873246296434999635, guid: 3111c195432714a7fbdb2dc9103435e1, type: 3}
   menuAudioManager: {fileID: 2260384567542651363, guid: 74eceaa4eae854b9dae0eaea9c69b1e8, type: 3}
   menuAudioManagerScript: {fileID: 2260384567542651362, guid: 74eceaa4eae854b9dae0eaea9c69b1e8, type: 3}
+  gameManagerScript: {fileID: 4213283918921910266, guid: a1e062381aedb416a880d9c424a48700, type: 3}

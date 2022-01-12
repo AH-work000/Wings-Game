@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     private bool sceneLoaded = false;
 
+    private bool gameModeSelected = false;
+
         // Bool Member Variables -- Life-Indicators
         private bool missedOneWing = false;
 
@@ -61,14 +63,17 @@ public class GameManager : MonoBehaviour
 
 
     // Member variables for GameMode Selections
-    public enum GameMode { Easy = 4, Medium = 3, Hard = 2 };
+    public enum GameMode { Easy = 4, Medium = 3, Hard = 1 };
 
 
-    // Member Variables for the load manager
-
-    // Instantiate the below two objects at the first update frame and make sure that they are only spawn once!!!
+    // Member Variables for the Load Manager
     [SerializeField]
-    private LoadManager loadManagerScript; 
+    private LoadManager loadManagerScript;
+
+
+    // Member variables for storing the selected GameMode
+    public GameMode selectedGameMode;
+
 
 
     // Start is called before the first frame update
@@ -100,18 +105,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Game Mode in Update: " + (float)selectedGameMode);
 
         if (loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay) || loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GameOver))
         {
             // Check if the timer is over or equal to the interval provided by the GameMode
             // and less than three chicken wings have been missed
-            if (timer >= (float)GameMode.Hard & !isTheGameOver)
+            if (timer >= (float)selectedGameMode && !isTheGameOver && !gameModeSelected)
             {
                 // Generate the element position reference for the startingYCoordArray
                 int yCoordArrayElementPosition = Random.Range(0, 6);
 
                 // Instantiate the Chicken Wing as the following position
                 CreateChickenWing(startingYCoordArray[yCoordArrayElementPosition]);
+
+                Debug.Log("Chicken Wing Generated");
 
                 // Once the chicken have been launch -- Call the ResetTimer Method
                 ResetTimer();
@@ -216,7 +224,6 @@ public class GameManager : MonoBehaviour
 
     // HELPER METHODS
 
-
         // Method: Convert X Coordinate Value from Screen Point to World Space
         private float GetXCoordInWorldSpace(float xCoord)
         {
@@ -244,11 +251,38 @@ public class GameManager : MonoBehaviour
         }
 
 
-
         // Method: Reset the timer to zero
         private void ResetTimer()
         {
             timer = 0.0f;
+        }
+
+
+
+    // GAMEMODE METHODS
+
+        // Method: Designate the GameMode chosen by the user and store it
+        // into the selectedGameMode Variable
+        public void SelectGameMode(GameMode gameMode)
+        {
+            // (if) When the gameMode equals Medium --> Make the timeMultplier to be 1.5f
+            // (else if) When the gameMode equals Hard --> Make the timeMultplier to be 1.8f
+            // (else) When the gameMode equals Easy (Default) --> Make the timeMultplier to be 1.0f
+            if (gameMode == GameMode.Medium)
+            {
+                wingManagerScript.timeMultplier = 1.5f;
+            }
+            else if (gameMode == GameMode.Hard)
+            {
+                wingManagerScript.timeMultplier = 1.8f;
+            }
+            else
+            {
+                wingManagerScript.timeMultplier = 1.0f;
+            }
+
+            // Make the gameModeSelected bool to be true as the respective selectedGameMode have been initialized
+            gameModeSelected = true;
         }
 
 }

@@ -31,6 +31,9 @@ public class WingManager : MonoBehaviour
     private bool isPointAdded;
 
 
+    // Member variables for timeMultplier amount depending on difficulty
+    public float timeMultplier;
+
 
     void Awake()
     {
@@ -73,8 +76,8 @@ public class WingManager : MonoBehaviour
         // Do the Lerp Movement unless the chicken wing have been hit
         if (!hasHit)
         {
-            // Do the lerp where the game mode is set to easy (timeDuration = (Hard)0.5f)
-            DoLerp(0.6f, 6.0f); // 0.6f translates to hard mode -- TO BE CHANGED LATER ONCE DIFFICULTY MODE PAGE IS COMPLETE
+            // Make the stardard timeDuration of the lerp to be 1 seconds for every 6 Unity units
+            DoLerp(1.0f, 6.0f);  
         }
 
 
@@ -121,7 +124,7 @@ public class WingManager : MonoBehaviour
 
             // Destroy the Wing Prefab
             // (i.e. after the death animation is finished playing)
-            Invoke("WingDestroy", 1.8f);
+            Invoke("WingDestroy", 2.0f);
 
         }
     }
@@ -137,8 +140,8 @@ public class WingManager : MonoBehaviour
         // Create a new variable that stores the end position of the Chicken Wing
         Vector3 newPos = new Vector3(this.transform.position.x + endXPos, this.transform.position.y); 
 
-        // Divide the current time.deltaTime by timeDuration
-        float timeFraction = Time.deltaTime / timeDuration;
+        // Divide the current time.deltaTime by timeDuration and then multply it by the timeMultplier
+        float timeFraction = (Time.deltaTime / timeDuration) * timeMultplier;
 
         // Do the lerp method
         this.transform.position = Vector3.Lerp(oldPos, newPos, timeFraction);
@@ -186,5 +189,6 @@ public class WingManager : MonoBehaviour
     {
         wingAnimator.SetTrigger("isDead");
     }
+
 
 }

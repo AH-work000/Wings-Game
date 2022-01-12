@@ -17,6 +17,11 @@ public class MenuManager : MonoBehaviour
     public MenuAudioManager menuAudioManagerScript;
 
 
+    // Member Variables -- Gamemanager Fields
+    [SerializeField]
+    private GameManager gameManagerScript;
+
+
     // Member Variables -- bool
     private bool isMenuSet = false;
 
@@ -56,8 +61,6 @@ public class MenuManager : MonoBehaviour
             isMenuSet = true;
 
         }
-
-
     }
 
 
@@ -72,13 +75,30 @@ public class MenuManager : MonoBehaviour
     // FUNCTIONS AND PROCEDURES
 
         // Method: Load the GamePlay Scene and remove the Menu Audio Manager
-        public void LoadGamePlay()
+        public void LoadGamePlay(string mode)
         {
             // Load GamePlay using Async Loading
             StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GamePlay));
 
-        }
+            // Choice == Game Mode
+            string choice = mode;
 
+            // Switch for selecting the Game Mode in the Game Manager
 
+            switch (choice)
+            {
+                case "Easy": gameManagerScript.selectedGameMode = GameManager.GameMode.Easy; break;
+                case "Medium": gameManagerScript.selectedGameMode = GameManager.GameMode.Medium; break;
+                case "Hard": gameManagerScript.selectedGameMode = GameManager.GameMode.Hard; break;
+            }
 
+            // Switch for determining the time multplier based on the Game Mode
+            switch (choice)
+            {
+                case "Easy": gameManagerScript.SelectGameMode(GameManager.GameMode.Easy); break;
+                case "Medium": gameManagerScript.SelectGameMode(GameManager.GameMode.Medium); break;
+                case "Hard": gameManagerScript.SelectGameMode(GameManager.GameMode.Hard); break;
+            }
+
+    }
 }

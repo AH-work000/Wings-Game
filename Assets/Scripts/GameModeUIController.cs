@@ -70,7 +70,7 @@ public class GameModeUIController : MonoBehaviour
 
 
             // Call the LoadGameplay method in menuManagerScript to load the gameplay scene
-            menuManagerScript.LoadGamePlay();
+            menuManagerScript.LoadGamePlay("Easy");
     }
 
 
@@ -80,6 +80,13 @@ public class GameModeUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
+
+            // Unload the GameMode Scene using Async Loading
+            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.GameMode));
+
+
+            // Call the LoadGameplay method in menuManagerScript to load the gameplay scene
+            menuManagerScript.LoadGamePlay("Medium");
         }
 
 
@@ -89,6 +96,12 @@ public class GameModeUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
+            // Unload the GameMode Scene using Async Loading
+            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.GameMode));
+
+
+            // Call the LoadGameplay method in menuManagerScript to load the gameplay scene
+            menuManagerScript.LoadGamePlay("Hard");
         }
 
 }
