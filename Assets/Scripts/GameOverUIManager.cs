@@ -63,7 +63,7 @@ public class GameOverUIManager : MonoBehaviour
         StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver));
 
         // Load back the Gameplay Scene
-        StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GamePlay));
+        StartCoroutine(loadManagerScript.LoadSceneDeletePreviousObjects(LoadManager.SceneMode.GamePlay));
     }
 
 

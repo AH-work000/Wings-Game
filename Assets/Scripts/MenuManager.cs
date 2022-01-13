@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-
     // Member Variables -- LoadManager Fields
     public GameObject loadManager;
 
@@ -13,7 +12,7 @@ public class MenuManager : MonoBehaviour
 
     // Member Variables -- AudioManager Fields
     public GameObject menuAudioManager;
-
+    
     public MenuAudioManager menuAudioManagerScript;
 
 
@@ -26,12 +25,29 @@ public class MenuManager : MonoBehaviour
     private bool isMenuSet = false;
 
 
+    // Member Variables -- List of instances of MenuManager (GameObject)
+    private GameObject[] menuManagerGameObjectList;
+
+
     // Awake is called before Start
     void Awake()
     {
-        // Make sure the Menu Manager (this GameObject) is always available between scenes
-        DontDestroyOnLoad(gameObject);
+        // Get a list of gameObject that have the tag "MenuManager" 
+        menuManagerGameObjectList = GameObject.FindGameObjectsWithTag("MenuManager");
 
+        // Check if ther is more than one instance of MenuManager
+        if (menuManagerGameObjectList.Length > 1)
+        {
+            // Destroy this gameObject
+            Destroy(gameObject);
+        }
+        else
+        {
+            // Make sure the Menu Manager (this GameObject) is always available between scenes
+            DontDestroyOnLoad(gameObject);
+        }
+
+        
         // Get the script component of the loadManager gameObject and make it a reference to
         // the loadManagerScript variable
         loadManagerScript = loadManager.GetComponent<LoadManager>();

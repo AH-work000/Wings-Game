@@ -60,6 +60,18 @@ public class LoadManager : MonoBehaviour
     }
 
 
+    // Method: Load a Scene using the LoadSceneAsync Method whilst deleting all current gameObject
+    public IEnumerator LoadSceneDeletePreviousObjects(SceneMode scene)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        SceneManager.LoadSceneAsync((int)scene, LoadSceneMode.Single);
+
+        // Make the scene param to be the currentScene
+        currentScene = scene;
+    }
+
+
     // Method: Load a Scene over another scene using the LoadSceneAsync Method
     public IEnumerator LoadSceneOverAnotherScene(SceneMode scene)
     {
