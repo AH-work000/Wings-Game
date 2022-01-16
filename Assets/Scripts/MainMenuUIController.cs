@@ -39,10 +39,10 @@ public class MainMenuUIController : MonoBehaviour
         tutorialButton.onClick.AddListener(LoadTutorial);
 
         // Add Listener to the settingButton variable
-        settingButton.onClick.AddListener(LoadSettings);
+        settingButton.onClick.AddListener(LoadCredits);
 
         // Add Listener to the creditButton variable
-        creditButton.onClick.AddListener(LoadCredits);
+        creditButton.onClick.AddListener(Quit);
     }
 
     // Update is called once per frame
@@ -78,8 +78,8 @@ public class MainMenuUIController : MonoBehaviour
         }
 
 
-        // Method: Destroy this scene and load the Setting Page (Scene)
-        public void LoadSettings()
+        // Method: Destroy this scene and load the Credit Page (Scene)
+        public void LoadCredits()
         {
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
@@ -87,8 +87,8 @@ public class MainMenuUIController : MonoBehaviour
         }
 
 
-        // Method: Destroy this scene and load the Credit Page (Scene)
-        public void LoadCredits()
+        // Method: Quit out of the program
+        public void Quit()
         {
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
