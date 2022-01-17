@@ -28,7 +28,6 @@ public class MainMenuUIController : MonoBehaviour
     private AudioSource buttonClickedAudioSource;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +74,11 @@ public class MainMenuUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
+            // Unload the Main Menu Screen using Async Loading
+            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.MainMenu));
+
+            // Load the Tutorial One Page using Async Loading
+            StartCoroutine(menuManagerScript.loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageOne));
         }
 
 

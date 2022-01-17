@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LoadManager : MonoBehaviour
 {
     // Member variables for SceneMode Selections
-    public enum SceneMode {MainMenu, GameMode, GamePlay, GameOver};
+    public enum SceneMode {MainMenu, GameMode, GamePlay, GameOver, TutorialPageOne};
 
     // Member variable for storing a variable reference to the current scene (PRIVATE variable later...)
     public SceneMode currentScene;
