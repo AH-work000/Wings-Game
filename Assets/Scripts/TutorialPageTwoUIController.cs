@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TutorialPageOneUIController : MonoBehaviour
+public class TutorialPageTwoUIController : MonoBehaviour
 {
     // Member Variables -- Button Fields
     [SerializeField]
     private Button exitButton;
 
     [SerializeField]
-    private Button nextButton;
+    private Button backButton;
 
 
     // Member Variables -- Menu Manager Field
@@ -28,18 +28,16 @@ public class TutorialPageOneUIController : MonoBehaviour
         // Add Listener to the exitButton variable
         exitButton.onClick.AddListener(ReturnToMainMenu);
 
+        // Add Listener to the backButton variable
+        backButton.onClick.AddListener(LoadPageOneTutorial);
 
-        // Add Listener to the nextButton variable
-        nextButton.onClick.AddListener(LoadPageTwoTutorial);
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
+    }
 
 
     // ONCLICK LISTENER METHODS
@@ -51,25 +49,23 @@ public class TutorialPageOneUIController : MonoBehaviour
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
             // Unload the Tutorial Page One using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageOne));
+            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageTwo));
 
             // Load the Tutorial Page Two using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.LoadScene(LoadManager.SceneMode.MainMenu)); 
+            StartCoroutine(menuManagerScript.loadManagerScript.LoadScene(LoadManager.SceneMode.MainMenu));
         }
 
 
         // Method: Destroy this scene and load the page 2 tutorial page
-        public void LoadPageTwoTutorial()
+        public void LoadPageOneTutorial()
         {
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
-        
+
             // Unload the Tutorial Page One using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageOne));
+            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageTwo));
 
             // Load the Tutorial Page Two using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageTwo)); 
-
+            StartCoroutine(menuManagerScript.loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageOne)); 
         }
-
 }
