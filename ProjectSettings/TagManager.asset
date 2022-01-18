@@ -12,6 +12,7 @@ TagManager:
   - BasicGameManager
   - LoadManager
   - MenuManager
+  - ChickenWing
   layers:
   - Default
   - TransparentFX

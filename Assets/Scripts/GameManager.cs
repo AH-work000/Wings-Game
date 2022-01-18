@@ -322,9 +322,9 @@ public class GameManager : MonoBehaviour
             // Get and store the current high score value
             int currentHighScore = PlayerPrefs.GetInt(saveHighScoreKey);
 
-            // Check if the current value in the Save High Score Key
-            // do not equals to the highScore value
-            if (!highScore.Equals(currentHighScore))
+            // Check if the high score value is greater than 
+            // the current one stored in the PlayerPrefs
+            if (highScore > currentHighScore)
             {
                 // Create/Update Playerpref
                 PlayerPrefs.SetInt(saveHighScoreKey, highScore);
