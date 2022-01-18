@@ -127,6 +127,7 @@ public class WingManager : MonoBehaviour
             Invoke("WingDestroy", 2.0f);
 
         }
+
     }
 
 

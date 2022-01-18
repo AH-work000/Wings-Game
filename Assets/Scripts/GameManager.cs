@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     private bool gameModeSelected = false;
 
+
         // Bool Member Variables -- Life-Indicators
         private bool missedOneWing = false;
 
@@ -75,6 +76,10 @@ public class GameManager : MonoBehaviour
     public GameMode selectedGameMode;
 
 
+    // Member Variables for PlayerPrefs
+    private const string saveHighScoreKey = "High Score";
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -98,6 +103,9 @@ public class GameManager : MonoBehaviour
         // Initialize the posSpacingLength variable --> The distance
         // between each starting position of the wings on the y-axis
         posSpacingLength = maxHeight / 10;
+
+        // Load in the High Score into the High Score Text Field
+        inGameUIScript.SetHighScore(PlayerPrefs.GetInt(saveHighScoreKey));
     }
 
 
@@ -105,7 +113,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Game Mode in Update: " + (float)selectedGameMode);
 
         if (loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay) || loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GameOver))
         {
@@ -118,8 +125,6 @@ public class GameManager : MonoBehaviour
 
                 // Instantiate the Chicken Wing as the following position
                 CreateChickenWing(startingYCoordArray[yCoordArrayElementPosition]);
-
-                Debug.Log("Chicken Wing Generated");
 
                 // Once the chicken have been launch -- Call the ResetTimer Method
                 ResetTimer();
@@ -199,7 +204,10 @@ public class GameManager : MonoBehaviour
             // This stops the game from generating more chicken wings
             isTheGameOver = true;
 
-            // Check if the Gameover scene is loaded
+            // Destroy all Chicken Wing Instances that is still currently in the scene
+            DeleteAllChickenWings();
+
+            // Check if the Gameover scene is not loaded yet
             if (!sceneLoaded)
             {
                 // Pause the ability for the player to move the hot spray machine and shoot its projectile
@@ -214,6 +222,8 @@ public class GameManager : MonoBehaviour
                 // Make the sceneLoaded bool to be true so that only one copy of Gameover scene is loaded
                 sceneLoaded = true;
 
+                // Save high score data
+                SaveHighScore();
             }
 
         }
@@ -258,6 +268,20 @@ public class GameManager : MonoBehaviour
         }
 
 
+        // Method: Delete all instances of chicken wings in the scene
+        private void DeleteAllChickenWings()
+        {
+            // Get all chicken wing objects currently still in the scene and store it into an array variable
+            GameObject[] chickenWingArray = GameObject.FindGameObjectsWithTag("ChickenWing");
+
+            // Foreach loop to delete all stored instances of chickenWings in the chickenWingArray
+            foreach (GameObject chickenWing in chickenWingArray)
+            {
+                Destroy(chickenWing);
+            }
+        }
+
+
 
     // GAMEMODE METHODS
 
@@ -283,6 +307,31 @@ public class GameManager : MonoBehaviour
 
             // Make the gameModeSelected bool to be true as the respective selectedGameMode have been initialized
             gameModeSelected = true;
+        }
+
+
+
+    // PLAYERPREFS METHODS
+
+        // Method: Save the Player's High Score
+        public void SaveHighScore()
+        {
+            // Get and store the high score value
+            int highScore = inGameUIScript.GetHighScore();
+
+            // Get and store the current high score value
+            int currentHighScore = PlayerPrefs.GetInt(saveHighScoreKey);
+
+            // Check if the current value in the Save High Score Key
+            // do not equals to the highScore value
+            if (!highScore.Equals(currentHighScore))
+            {
+                // Create/Update Playerpref
+                PlayerPrefs.SetInt(saveHighScoreKey, highScore);
+
+                // Save
+                PlayerPrefs.Save();
+            }
         }
 
 }

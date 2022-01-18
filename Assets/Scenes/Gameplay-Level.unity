@@ -792,6 +792,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d54b90b208ba3460d8a602f4d1f1f238, type: 3}
+--- !u!114 &2733160166363473137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2733160167201545869, guid: d54b90b208ba3460d8a602f4d1f1f238, type: 3}
+  m_PrefabInstance: {fileID: 2733160166363473136}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4213283918823538608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -883,6 +894,10 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1103388500}
+    - target: {fileID: 4213283919471766788, guid: a1e062381aedb416a880d9c424a48700, type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 2733160166363473137}
     - target: {fileID: 4213283919471766788, guid: a1e062381aedb416a880d9c424a48700, type: 3}
       propertyPath: chickenWingIcon1Image
       value: 

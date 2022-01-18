@@ -10,6 +10,9 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField]
     private Text scoreText;
 
+    [SerializeField]
+    private Text highScoreText;
+
     // Member Variables -- Chicken Wing Life-Indicator Icons
     public Image chickenWingIcon1Image;
 
@@ -40,25 +43,40 @@ public class InGameUIManager : MonoBehaviour
     // PUBLIC METHODS
 
 
-    // Method: Add +10 to the score variable when a chicken wing prefab have been hit
-    public void AddPoints()
-    {
-        score += 10;
-    }
-
-    // Method: Remove a chicken wing icon from the life-indicator bar when a non-sprayed chicken wing
-    // successfully crosses the screen
-    public void RemoveChickenWingIcon(char choice)
-    {
-        // Initialize the selection variable
-        char selection = choice;
-
-        switch (selection)
+        // Method: Add +10 to the score variable when a chicken wing prefab have been hit
+        public void AddPoints()
         {
-            case 'A': Destroy(chickenWingIcon1Image); break;
-            case 'B': Destroy(chickenWingIcon2Image); break;
-            case 'C': Destroy(chickenWingIcon3Image); break;
+            score += 10;
         }
-    }
+
+        // Method: Remove a chicken wing icon from the life-indicator bar when a non-sprayed chicken wing
+        // successfully crosses the screen
+        public void RemoveChickenWingIcon(char choice)
+        {
+            // Initialize the selection variable
+            char selection = choice;
+
+            switch (selection)
+            {
+                case 'A': Destroy(chickenWingIcon1Image); break;
+                case 'B': Destroy(chickenWingIcon2Image); break;
+                case 'C': Destroy(chickenWingIcon3Image); break;
+            }
+        }
+
+
+        // Method: Set the High Score text to the one saved in the PlayerPrefs
+        public void SetHighScore(int highScore)
+        {
+            highScoreText.text = "" + highScore;
+        }
+
+
+        // Method: Get the High Score from the High Score Text Field
+        public int GetHighScore()
+        {
+            int highScore = int.Parse(scoreText.text);
+            return highScore;
+        }
 
 }
