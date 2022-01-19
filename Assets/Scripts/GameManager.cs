@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
             // Check if the gameplay music is off at this moment
             if (!isGameplayMusicOn)
             {
-                audioManagerScript.PlayGameplayMusic();
+                StartCoroutine(audioManagerScript.PlayGameplayMusic());
                 isGameplayMusicOn = true;
             }
 

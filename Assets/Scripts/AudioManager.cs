@@ -67,8 +67,9 @@ public class AudioManager : MonoBehaviour
 
 
     // Method: Play the gameplay background music on loop
-    public void PlayGameplayMusic()
+    public IEnumerator PlayGameplayMusic()
     {
+        yield return new WaitForSeconds(0.15f);
         backgroundAudioSource.clip = gameplayMusic;
         backgroundAudioSource.volume = 0.25f;
         backgroundAudioSource.loop = true;
