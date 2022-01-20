@@ -13,6 +13,7 @@ TagManager:
   - LoadManager
   - MenuManager
   - ChickenWing
+  - MenuBackgroundAudioSource
   layers:
   - Default
   - TransparentFX

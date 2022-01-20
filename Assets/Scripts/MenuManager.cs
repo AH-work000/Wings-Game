@@ -21,21 +21,29 @@ public class MenuManager : MonoBehaviour
     private GameManager gameManagerScript;
 
 
+    // Member Variables -- Menu Background Music AudioSource Fields
+    [SerializeField]
+    private AudioSource menuBackgroundAudioSource;
+
+
     // Member Variables -- bool
     private bool isMenuSet = false;
+
+    private bool isBackgroundMusicPlayed = false;
 
 
     // Member Variables -- List of instances of MenuManager (GameObject)
     private GameObject[] menuManagerGameObjectList;
 
 
+
     // Awake is called before Start
     void Awake()
     {
-        // Get a list of gameObject that have the tag "MenuManager" 
+        // Get a list of gameObjects that have the tag "MenuManager" 
         menuManagerGameObjectList = GameObject.FindGameObjectsWithTag("MenuManager");
 
-        // Check if ther is more than one instance of MenuManager
+        // Check if there is more than one instance of MenuManager
         if (menuManagerGameObjectList.Length > 1)
         {
             // Destroy this gameObject
@@ -43,11 +51,12 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
+
             // Make sure the Menu Manager (this GameObject) is always available between scenes
             DontDestroyOnLoad(gameObject);
         }
 
-        
+
         // Get the script component of the loadManager gameObject and make it a reference to
         // the loadManagerScript variable
         loadManagerScript = loadManager.GetComponent<LoadManager>();
@@ -56,7 +65,6 @@ public class MenuManager : MonoBehaviour
         // Get the script component of the menuAudioManager gameObject and make it a reference to
         // the menuAudioManagerScript variable
         menuAudioManagerScript = menuAudioManager.GetComponent<MenuAudioManager>();
-
     }
 
 
@@ -75,16 +83,24 @@ public class MenuManager : MonoBehaviour
             // Make the bool to be true so that there are only one
             // LoadManager and MenuAudioManager generated
             isMenuSet = true;
-
         }
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        // Play the Background Menu Music
+        if (!isBackgroundMusicPlayed)
+        {
+            menuAudioManagerScript.PlayBackgroundMusic(menuBackgroundAudioSource);
 
-        
+            // Make the isBackgroundMusicPlayed bool to be true so that the background
+            // music is only played once
+            isBackgroundMusicPlayed = true;
+        }
+
     }
 
 
@@ -93,6 +109,9 @@ public class MenuManager : MonoBehaviour
         // Method: Load the GamePlay Scene and remove the Menu Audio Manager
         public void LoadGamePlay(string mode)
         {
+            // Stop the Menu Background Audio Source from Playing
+            menuAudioManagerScript.StopBackgroundMusic(menuBackgroundAudioSource);
+
             // Load GamePlay using Async Loading
             StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GamePlay));
 

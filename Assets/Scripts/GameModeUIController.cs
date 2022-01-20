@@ -20,10 +20,10 @@ public class GameModeUIController : MonoBehaviour
 
     private MenuManager menuManagerScript;
 
+
     // Member Variables -- AudioSource
     [SerializeField]
     private AudioSource buttonClickedAudioSource;
-
 
 
     // Start is called before the first frame update
@@ -64,10 +64,8 @@ public class GameModeUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
-
             // Unload the GameMode Scene using Async Loading
             StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.GameMode));
-
 
             // Call the LoadGameplay method in menuManagerScript to load the gameplay scene
             menuManagerScript.LoadGamePlay("Easy");
@@ -80,10 +78,8 @@ public class GameModeUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
-
             // Unload the GameMode Scene using Async Loading
             StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.GameMode));
-
 
             // Call the LoadGameplay method in menuManagerScript to load the gameplay scene
             menuManagerScript.LoadGamePlay("Medium");
@@ -98,7 +94,6 @@ public class GameModeUIController : MonoBehaviour
 
             // Unload the GameMode Scene using Async Loading
             StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.GameMode));
-
 
             // Call the LoadGameplay method in menuManagerScript to load the gameplay scene
             menuManagerScript.LoadGamePlay("Hard");

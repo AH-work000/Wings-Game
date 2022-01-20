@@ -879,6 +879,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1145614308}
     - target: {fileID: 4213283919391882228, guid: a1e062381aedb416a880d9c424a48700, type: 3}
+      propertyPath: gameplayMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: f74da3a614f264f3a8198dc653d0ffc2, type: 3}
+    - target: {fileID: 4213283919391882228, guid: a1e062381aedb416a880d9c424a48700, type: 3}
       propertyPath: backgroundAudioSource
       value: 
       objectReference: {fileID: 1261915860}

@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("The current scene is:" + loadManagerScript.currentScene);
 
         if (loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay) || loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GameOver))
         {

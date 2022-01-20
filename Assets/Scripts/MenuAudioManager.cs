@@ -8,6 +8,9 @@ public class MenuAudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip buttonClickedSound;
 
+    [SerializeField]
+    private AudioClip backgroundMenuSound;
+
 
     // Awake is called before Start
     void Awake()
@@ -37,4 +40,24 @@ public class MenuAudioManager : MonoBehaviour
         audioSource.loop = false;
         audioSource.Play();
     }
+
+
+    // Method: Play the Background Menu Music once the Main Menu Scene have loaded
+    public void PlayBackgroundMusic(AudioSource audioSource)
+    {
+        audioSource.clip = backgroundMenuSound;
+        audioSource.volume = 0.25f;
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+
+
+    // Method: Stop the Background Menu Music once the Game Mode have been selected
+    public void StopBackgroundMusic(AudioSource audioSource)
+    {
+        audioSource.Stop();
+    }
+
+
+
 }
