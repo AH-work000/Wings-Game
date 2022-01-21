@@ -43,8 +43,9 @@ public class MenuAudioManager : MonoBehaviour
 
 
     // Method: Play the Background Menu Music once the Main Menu Scene have loaded
-    public void PlayBackgroundMusic(AudioSource audioSource)
+    public IEnumerator PlayBackgroundMusic(AudioSource audioSource)
     {
+        yield return new WaitForSeconds(0.15f);
         audioSource.clip = backgroundMenuSound;
         audioSource.volume = 0.25f;
         audioSource.loop = true;

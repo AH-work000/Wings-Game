@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
     // Member Variables -- LoadManager Fields
     public GameObject loadManager;
 
-    public LoadManager loadManagerScript;
+    private LoadManager loadManagerScript;
 
 
     // Member Variables -- AudioManager Fields
@@ -56,7 +56,6 @@ public class MenuManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-
         // Get the script component of the loadManager gameObject and make it a reference to
         // the loadManagerScript variable
         loadManagerScript = loadManager.GetComponent<LoadManager>();
@@ -65,6 +64,7 @@ public class MenuManager : MonoBehaviour
         // Get the script component of the menuAudioManager gameObject and make it a reference to
         // the menuAudioManagerScript variable
         menuAudioManagerScript = menuAudioManager.GetComponent<MenuAudioManager>();
+        
     }
 
 
@@ -91,10 +91,12 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("The current scene in the MenuManager is: " + LoadManager.currentScene);
+
         // Play the Background Menu Music
-        if (!isBackgroundMusicPlayed)
+        if (!isBackgroundMusicPlayed && loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.MainMenu))
         {
-            menuAudioManagerScript.PlayBackgroundMusic(menuBackgroundAudioSource);
+            StartCoroutine(menuAudioManagerScript.PlayBackgroundMusic(menuBackgroundAudioSource));
 
             // Make the isBackgroundMusicPlayed bool to be true so that the background
             // music is only played once
@@ -135,5 +137,55 @@ public class MenuManager : MonoBehaviour
                 case "Hard": gameManagerScript.SelectGameMode(GameManager.GameMode.Hard); break;
             }
 
-    }
+        }
+
+
+        // Method: Link the UI Controllers to the Load Manager to Load Scene
+        public void LoadScene(string sceneMode)
+        {
+            switch (sceneMode)
+            {
+                case "MainMenu": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.MainMenu)); break;
+                case "GameMode": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GameMode)); break;
+                case "GamePlay": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GamePlay)); break;
+                case "GameOver": StartCoroutine(loadManagerScript.LoadSceneOverAnotherScene(LoadManager.SceneMode.GameOver)); break;
+                case "TutorialPageOne": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageOne)); break;
+                case "TutorialPageTwo": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageTwo)); break;
+            }
+
+            if (sceneMode.Equals("Restart"))
+            {
+                StartCoroutine(loadManagerScript.RestartGame());
+                isBackgroundMusicPlayed = false;
+            }
+
+        }
+
+
+        // Method: Link the UI Controllers to the Load Manager to Unload Scene
+        public void UnloadScene(string sceneMode)
+        {
+            switch (sceneMode)
+            {
+                case "MainMenu": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.MainMenu)); break;
+                case "GameMode": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GameMode)); break;
+                case "GamePlay": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GamePlay)); break;
+                case "GameOver": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver)); break;
+                case "TutorialPageOne":  StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageOne)); break;
+                case "TutorialPageTwo": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageTwo)); break;
+            }
+            
+        }
+
+        // Method: Link the Game Manager to the Load Manager on checking if the current scene is 
+        public bool isTheCurrentScene(string sceneMode)
+        {
+            switch (sceneMode)
+            {
+                case "GameMode": return loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay);
+                case "GamePlay": return loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay);  
+                case "GameOver": return loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GameOver);
+                default : return false;
+            }
+        }
 }

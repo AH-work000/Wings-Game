@@ -20,7 +20,8 @@ public class MainMenuUIController : MonoBehaviour
 
 
     // Member Variables -- Menu Manager Field
-    [SerializeField]
+    private GameObject menuManager;
+
     private MenuManager menuManagerScript;
 
 
@@ -43,6 +44,13 @@ public class MainMenuUIController : MonoBehaviour
 
         // Add Listener to the creditButton variable
         creditButton.onClick.AddListener(Quit);
+
+        // Instantiate the menuManager variable by finding a gameObject with the tag "MenuManager"
+        menuManager = GameObject.FindGameObjectWithTag("MenuManager");
+
+        // Get the menuManager script from the menuManager gameObject and
+        // designate it into the menuManagerScript variable
+        menuManagerScript = menuManager.GetComponent<MenuManager>();
     }
 
     // Update is called once per frame
@@ -62,10 +70,10 @@ public class MainMenuUIController : MonoBehaviour
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
             // Unload the Main Menu Screen using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.MainMenu));
+            menuManagerScript.UnloadScene("MainMenu");
 
             // Load the GameMode using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.LoadScene(LoadManager.SceneMode.GameMode));
+            menuManagerScript.LoadScene("GameMode");
         }
 
 
@@ -76,10 +84,10 @@ public class MainMenuUIController : MonoBehaviour
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
             // Unload the Main Menu Screen using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.MainMenu));
+            menuManagerScript.UnloadScene("MainMenu");
 
             // Load the Tutorial One Page using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageOne));
+            menuManagerScript.LoadScene("TutorialPageOne");
         }
 
 

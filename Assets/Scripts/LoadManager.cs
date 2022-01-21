@@ -9,7 +9,8 @@ public class LoadManager : MonoBehaviour
     public enum SceneMode {MainMenu, GameMode, GamePlay, GameOver, TutorialPageOne, TutorialPageTwo};
 
     // Member variable for storing a variable reference to the current scene (PRIVATE variable later...)
-    public SceneMode currentScene;
+    public static SceneMode currentScene;
+
 
     // Awake is called before start
     void Awake()
@@ -24,7 +25,6 @@ public class LoadManager : MonoBehaviour
     void Start()
     {
 
-
     }
 
 
@@ -37,14 +37,22 @@ public class LoadManager : MonoBehaviour
 
 
     // Method: Restart the Game by unloading all current scenes and loading the game menu scene
-    public void RestartGame()
+    public IEnumerator RestartGame()
     {
+        yield return new WaitForSeconds(0.1f);
+
         // Unload both the Gameover and Gameplay scenes using Async Loading
-        StartCoroutine(UnloadScene(SceneMode.GameOver));
-        StartCoroutine(UnloadScene(SceneMode.GamePlay));
-         
+        SceneManager.UnloadSceneAsync((int)SceneMode.GameOver);
+        yield return new WaitForSeconds(0.15f);
+        SceneManager.UnloadSceneAsync((int)SceneMode.GamePlay);
+        yield return new WaitForSeconds(0.15f);
+
         // Then Load the Main Scene
-        StartCoroutine(LoadScene(SceneMode.MainMenu));
+        SceneManager.LoadSceneAsync((int)SceneMode.MainMenu);
+        yield return new WaitForSeconds(0.15f);
+
+        // Make the Main menu to be the currentScene
+        currentScene = SceneMode.MainMenu;
     }
 
 

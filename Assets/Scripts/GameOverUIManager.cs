@@ -21,9 +21,9 @@ public class GameOverUIManager : MonoBehaviour
     private GameManager gameManagerScript;
 
     // Member Variables -- Load Manager Fields
-    private GameObject loadManager;
-    
-    private LoadManager loadManagerScript;
+    private GameObject menuManager;
+
+    private MenuManager menuManagerScript;
 
 
     // Start is called before the first frame update
@@ -35,12 +35,12 @@ public class GameOverUIManager : MonoBehaviour
         // Add Listener to the exit button variable
         exit.onClick.AddListener(LoadMainMenu);
 
-        // Instantiate the loadManager variable by finding a gameObject with the tag "LoadManager"
-        loadManager = GameObject.FindGameObjectWithTag("LoadManager");
+        // Instantiate the menuManager variable by finding a gameObject with the tag "MenuManager"
+        menuManager = GameObject.FindGameObjectWithTag("MenuManager");
 
-        // Get the loadManagerScript from the loadManager gameObject and
-        // designate it into the loadManagerScript variable
-        loadManagerScript = loadManager.GetComponent<LoadManager>();
+        // Get the menuManagerScript from the menuManager gameObject and
+        // designate it into the menuManagerScript variable
+        menuManagerScript = menuManager.GetComponent<MenuManager>();
 
     }
 
@@ -60,10 +60,10 @@ public class GameOverUIManager : MonoBehaviour
         // Restart the game by calling the Restart game method in the Load Manager
 
         // Unload the Gameover Scene using Async Loading
-        StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver));
+        menuManagerScript.UnloadScene("GameOver");
 
         // Load back the Gameplay Scene
-        StartCoroutine(loadManagerScript.LoadSceneDeletePreviousObjects(LoadManager.SceneMode.GamePlay));
+        menuManagerScript.LoadScene("GamePlay");
     }
 
 
@@ -73,13 +73,8 @@ public class GameOverUIManager : MonoBehaviour
         // Play the Button Clicked Sound 
         gameManagerScript.audioManagerScript.PlayButtonClickedSound(buttonAudioSource);
 
-        Invoke("RestartGame", 0.3f);
+        // Go to the RestartGame method in the load manager script
+        menuManagerScript.LoadScene("Restart");
     }
 
-
-    private void RestartGame()
-    {
-        // Go to the RestartGame method in the load manage script
-        loadManagerScript.RestartGame();
-    }
 }

@@ -66,10 +66,10 @@ public class GameManager : MonoBehaviour
     // Member variables for GameMode Selections
     public enum GameMode { Easy = 4, Medium = 3, Hard = 1 };
 
+    // Member Variables for the Menu Manager
+    private GameObject menuManager;
 
-    // Member Variables for the Load Manager
-    [SerializeField]
-    private LoadManager loadManagerScript;
+    private MenuManager menuManagerScript;
 
 
     // Member variables for storing the selected GameMode
@@ -106,6 +106,13 @@ public class GameManager : MonoBehaviour
 
         // Load in the High Score into the High Score Text Field
         inGameUIScript.SetHighScore(PlayerPrefs.GetInt(saveHighScoreKey));
+
+        // Locate a gameObject that have the tag "MenuManager"
+        // and store it into the menuManager variable
+        menuManager = GameObject.FindGameObjectWithTag("MenuManager");
+
+        // Get the menuManagerScript component from the menuManager object
+        menuManagerScript = menuManager.GetComponent<MenuManager>();
     }
 
 
@@ -113,9 +120,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("The current scene is:" + loadManagerScript.currentScene);
+        Debug.Log("The current scene in the GameManager is: " + LoadManager.currentScene);
 
-        if (loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay) || loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GameOver))
+        if (menuManagerScript.isTheCurrentScene("GamePlay") || menuManagerScript.isTheCurrentScene("GameOver"))
         {
             // Check if the timer is over or equal to the interval provided by the GameMode
             // and less than three chicken wings have been missed
@@ -215,7 +222,7 @@ public class GameManager : MonoBehaviour
                 inputManagerScript.isItGameOver = true;
 
                 // Load the Gameover Scene by calling the LoadGameOverScene method in the Load Manager
-                StartCoroutine(loadManagerScript.LoadSceneOverAnotherScene(LoadManager.SceneMode.GameOver));
+                menuManagerScript.LoadScene("GameOver");
 
                 // Play the gameover music
                 StartCoroutine(audioManagerScript.PlayGameOverMusic());

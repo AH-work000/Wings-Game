@@ -14,8 +14,10 @@ public class TutorialPageTwoUIController : MonoBehaviour
 
 
     // Member Variables -- Menu Manager Field
-    [SerializeField]
+    private GameObject menuManager;
+
     private MenuManager menuManagerScript;
+
 
     // Member Variables -- AudioSource
     [SerializeField]
@@ -30,6 +32,13 @@ public class TutorialPageTwoUIController : MonoBehaviour
 
         // Add Listener to the backButton variable
         backButton.onClick.AddListener(LoadPageOneTutorial);
+
+        // Instantiate the menuManager variable by finding a gameObject with the tag "MenuManager"
+        menuManager = GameObject.FindGameObjectWithTag("MenuManager");
+
+        // Get the menuManager script from the menuManager gameObject and
+        // designate it into the menuManagerScript variable
+        menuManagerScript = menuManager.GetComponent<MenuManager>();
 
     }
 
@@ -48,11 +57,11 @@ public class TutorialPageTwoUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
-            // Unload the Tutorial Page One using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageTwo));
+            // Unload the Tutorial Page Two using Async Loading
+            menuManagerScript.UnloadScene("TutorialPageTwo");
 
-            // Load the Tutorial Page Two using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.LoadScene(LoadManager.SceneMode.MainMenu));
+            // Load the Main Menu using Async Loading
+            menuManagerScript.LoadScene("MainMenu");
         }
 
 
@@ -62,10 +71,10 @@ public class TutorialPageTwoUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
-            // Unload the Tutorial Page One using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageTwo));
+            // Unload the Tutorial Page Two using Async Loading
+            menuManagerScript.UnloadScene("TutorialPageTwo");
 
-            // Load the Tutorial Page Two using Async Loading
-            StartCoroutine(menuManagerScript.loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageOne)); 
+            // Load the Tutorial Page One using Async Loading
+            menuManagerScript.LoadScene("TutorialPageOne");
         }
 }
