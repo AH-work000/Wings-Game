@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class MainMenuUIController : MonoBehaviour
 {
@@ -106,6 +107,21 @@ public class MainMenuUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
+            // Quit the Application after 0.15f seconds
+            Invoke("QuitApp", 0.15f);
         }
+
+
+
+    // OTHER METHODS
+
+        // Method: Quit the Application
+        private void QuitApp()
+        {
+            Application.Quit();
+            EditorApplication.ExitPlaymode();
+        }
+
+
 
 }
