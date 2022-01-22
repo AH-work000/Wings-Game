@@ -151,6 +151,7 @@ public class MenuManager : MonoBehaviour
                 case "GameOver": StartCoroutine(loadManagerScript.LoadSceneOverAnotherScene(LoadManager.SceneMode.GameOver)); break;
                 case "TutorialPageOne": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageOne)); break;
                 case "TutorialPageTwo": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageTwo)); break;
+                case "Credits": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.Credits)); break;
             }
 
             if (sceneMode.Equals("Restart"))
@@ -173,9 +174,11 @@ public class MenuManager : MonoBehaviour
                 case "GameOver": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver)); break;
                 case "TutorialPageOne":  StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageOne)); break;
                 case "TutorialPageTwo": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageTwo)); break;
+                case "Credits": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.Credits)); break;
             }
             
         }
+
 
         // Method: Link the Game Manager to the Load Manager on checking if the current scene is 
         public bool isTheCurrentScene(string sceneMode)

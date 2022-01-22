@@ -70,7 +70,7 @@ public class MainMenuUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
-            // Unload the Main Menu Screen using Async Loading
+            // Unload the Main Menu Scene using Async Loading
             menuManagerScript.UnloadScene("MainMenu");
 
             // Load the GameMode using Async Loading
@@ -84,7 +84,7 @@ public class MainMenuUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
-            // Unload the Main Menu Screen using Async Loading
+            // Unload the Main Menu Scene using Async Loading
             menuManagerScript.UnloadScene("MainMenu");
 
             // Load the Tutorial One Page using Async Loading
@@ -98,6 +98,11 @@ public class MainMenuUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
+            // Unload the Main Menu Scene using Async Loading
+            menuManagerScript.UnloadScene("MainMenu");
+
+            // Load the Credits Scene using Async Loading
+            menuManagerScript.LoadScene("Credits");
         }
 
 
