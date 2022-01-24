@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
+// using UnityEditor;
 
 public class MainMenuUIController : MonoBehaviour
 {
@@ -124,7 +124,9 @@ public class MainMenuUIController : MonoBehaviour
         private void QuitApp()
         {
             Application.Quit();
-            EditorApplication.ExitPlaymode();
+
+            // Code for Editor Only - Uncomment this and "using UnityEditor" when needed!!
+            // EditorApplication.ExitPlaymode();
         }
 
 

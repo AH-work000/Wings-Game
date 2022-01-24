@@ -17,7 +17,11 @@ public class MenuManager : MonoBehaviour
 
 
     // Member Variables -- Gamemanager Fields
+    /*[SerializeField]
+    private GameManager gameManagerScript; */
     [SerializeField]
+    private GameObject gameManager;
+
     private GameManager gameManagerScript;
 
 
@@ -60,11 +64,13 @@ public class MenuManager : MonoBehaviour
         // the loadManagerScript variable
         loadManagerScript = loadManager.GetComponent<LoadManager>();
 
-
         // Get the script component of the menuAudioManager gameObject and make it a reference to
         // the menuAudioManagerScript variable
         menuAudioManagerScript = menuAudioManager.GetComponent<MenuAudioManager>();
-        
+
+        // Get the script component of the gameManager gameObject and make it a reference to the
+        // gameManagerScript variable
+        gameManagerScript = gameManager.GetComponent<GameManager>();
     }
 
 
@@ -91,8 +97,6 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("The current scene in the MenuManager is: " + LoadManager.currentScene);
-
         // Play the Background Menu Music
         if (!isBackgroundMusicPlayed && loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.MainMenu))
         {
@@ -136,7 +140,6 @@ public class MenuManager : MonoBehaviour
                 case "Medium": gameManagerScript.SelectGameMode(GameManager.GameMode.Medium); break;
                 case "Hard": gameManagerScript.SelectGameMode(GameManager.GameMode.Hard); break;
             }
-
         }
 
 

@@ -120,8 +120,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("The current scene in the GameManager is: " + LoadManager.currentScene);
-
         if (menuManagerScript.isTheCurrentScene("GamePlay") || menuManagerScript.isTheCurrentScene("GameOver"))
         {
             // Check if the timer is over or equal to the interval provided by the GameMode
@@ -332,7 +330,7 @@ public class GameManager : MonoBehaviour
 
             // Check if the high score value is greater than 
             // the current one stored in the PlayerPrefs
-            if (highScore > currentHighScore)
+            if (highScore >= currentHighScore) //0
             {
                 // Create/Update Playerpref
                 PlayerPrefs.SetInt(saveHighScoreKey, highScore);

@@ -146,7 +146,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1361125600868800305, guid: bfcbb0e8a826b40539381e37ac9b7e52, type: 3}
   m_PrefabInstance: {fileID: 653823231}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266398113}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d85ac1a02d3a4b2e8192c8c0cb5bf09, type: 3}
@@ -258,11 +258,6 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7926240294755524651, guid: 7e5dec86b2b3f47eebff5525d1acc365, type: 3}
   m_PrefabInstance: {fileID: 248049873}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &266398113 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1361125600868800270, guid: bfcbb0e8a826b40539381e37ac9b7e52, type: 3}
-  m_PrefabInstance: {fileID: 653823231}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &320390469
 GameObject:
@@ -810,6 +805,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1361125600868800305, guid: bfcbb0e8a826b40539381e37ac9b7e52, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 4213283918921910265, guid: a1e062381aedb416a880d9c424a48700, type: 3}
+    - target: {fileID: 1361125600868800305, guid: bfcbb0e8a826b40539381e37ac9b7e52, type: 3}
       propertyPath: loadManager
       value: 
       objectReference: {fileID: 3259561186056645468, guid: 3111c195432714a7fbdb2dc9103435e1, type: 3}
@@ -864,7 +863,6 @@ MonoBehaviour:
   tutorialButton: {fileID: 1736313098}
   settingButton: {fileID: 363942762}
   creditButton: {fileID: 409379205}
-  menuManager: {fileID: 266398113}
   buttonClickedAudioSource: {fileID: 183776012}
 --- !u!4 &689697180
 Transform:
