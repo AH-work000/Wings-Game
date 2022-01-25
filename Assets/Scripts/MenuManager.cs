@@ -112,86 +112,70 @@ public class MenuManager : MonoBehaviour
 
     // FUNCTIONS AND PROCEDURES
 
+
         // Method: Load the GamePlay Scene and remove the Menu Audio Manager
-        public void LoadGamePlay(string mode)
+        public IEnumerator LoadGamePlay(string mode)
         {
+            yield return new WaitForSeconds(0.15f);
+
             // Stop the Menu Background Audio Source from Playing
             menuAudioManagerScript.StopBackgroundMusic(menuBackgroundAudioSource);
 
             // Load GamePlay using Async Loading
             StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GamePlay));
-
-            // Choice == Game Mode
-            string choice = mode;
-
-            // Switch for selecting the Game Mode in the Game Manager
-
-            switch (choice)
-            {
-                case "Easy": gameManagerScript.selectedGameMode = GameManager.GameMode.Easy; break;
-                case "Medium": gameManagerScript.selectedGameMode = GameManager.GameMode.Medium; break;
-                case "Hard": gameManagerScript.selectedGameMode = GameManager.GameMode.Hard; break;
-            }
-
-            // Switch for determining the time multplier based on the Game Mode
-            switch (choice)
-            {
-                case "Easy": gameManagerScript.SelectGameMode(GameManager.GameMode.Easy); break;
-                case "Medium": gameManagerScript.SelectGameMode(GameManager.GameMode.Medium); break;
-                case "Hard": gameManagerScript.SelectGameMode(GameManager.GameMode.Hard); break;
-            }
         }
+
 
 
         // Method: Link the UI Controllers to the Load Manager to Load Scene
         public void LoadScene(string sceneMode)
-        {
-            switch (sceneMode)
             {
-                case "MainMenu": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.MainMenu)); break;
-                case "GameMode": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GameMode)); break;
-                case "GamePlay": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GamePlay)); break;
-                case "GameOver": StartCoroutine(loadManagerScript.LoadSceneOverAnotherScene(LoadManager.SceneMode.GameOver)); break;
-                case "TutorialPageOne": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageOne)); break;
-                case "TutorialPageTwo": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageTwo)); break;
-                case "Credits": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.Credits)); break;
+                switch (sceneMode)
+                {
+                    case "MainMenu": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.MainMenu)); break;
+                    case "GameMode": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GameMode)); break;
+                    case "GamePlay": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.GamePlay)); break;
+                    case "GameOver": StartCoroutine(loadManagerScript.LoadSceneOverAnotherScene(LoadManager.SceneMode.GameOver)); break;
+                    case "TutorialPageOne": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageOne)); break;
+                    case "TutorialPageTwo": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.TutorialPageTwo)); break;
+                    case "Credits": StartCoroutine(loadManagerScript.LoadScene(LoadManager.SceneMode.Credits)); break;
+                }
+
+                if (sceneMode.Equals("Restart"))
+                {
+                    StartCoroutine(loadManagerScript.RestartGame());
+                    isBackgroundMusicPlayed = false;
+                }
+
             }
 
-            if (sceneMode.Equals("Restart"))
+
+            // Method: Link the UI Controllers to the Load Manager to Unload Scene
+            public void UnloadScene(string sceneMode)
             {
-                StartCoroutine(loadManagerScript.RestartGame());
-                isBackgroundMusicPlayed = false;
-            }
-
-        }
-
-
-        // Method: Link the UI Controllers to the Load Manager to Unload Scene
-        public void UnloadScene(string sceneMode)
-        {
-            switch (sceneMode)
-            {
-                case "MainMenu": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.MainMenu)); break;
-                case "GameMode": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GameMode)); break;
-                case "GamePlay": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GamePlay)); break;
-                case "GameOver": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver)); break;
-                case "TutorialPageOne":  StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageOne)); break;
-                case "TutorialPageTwo": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageTwo)); break;
-                case "Credits": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.Credits)); break;
-            }
+                switch (sceneMode)
+                {
+                    case "MainMenu": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.MainMenu)); break;
+                    case "GameMode": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GameMode)); break;
+                    case "GamePlay": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GamePlay)); break;
+                    case "GameOver": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.GameOver)); break;
+                    case "TutorialPageOne":  StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageOne)); break;
+                    case "TutorialPageTwo": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.TutorialPageTwo)); break;
+                    case "Credits": StartCoroutine(loadManagerScript.UnloadScene(LoadManager.SceneMode.Credits)); break;
+                }
             
-        }
-
-
-        // Method: Link the Game Manager to the Load Manager on checking if the current scene is 
-        public bool isTheCurrentScene(string sceneMode)
-        {
-            switch (sceneMode)
-            {
-                case "GameMode": return loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay);
-                case "GamePlay": return loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay);  
-                case "GameOver": return loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GameOver);
-                default : return false;
             }
-        }
+
+
+            // Method: Link the Game Manager to the Load Manager on checking if the current scene is 
+            public bool isTheCurrentScene(string sceneMode)
+            {
+                switch (sceneMode)
+                {
+                    case "GameMode": return loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay);
+                    case "GamePlay": return loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GamePlay);  
+                    case "GameOver": return loadManagerScript.isTheCurrentScene(LoadManager.SceneMode.GameOver);
+                    default : return false;
+                }
+            }
 }

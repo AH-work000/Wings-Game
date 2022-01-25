@@ -823,6 +823,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4213283918921910266, guid: a1e062381aedb416a880d9c424a48700, type: 3}
+      propertyPath: selectedGameMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213283918921910266, guid: a1e062381aedb416a880d9c424a48700, type: 3}
       propertyPath: loadManagerScript
       value: 
       objectReference: {fileID: 3873246296434999635, guid: 3111c195432714a7fbdb2dc9103435e1, type: 3}

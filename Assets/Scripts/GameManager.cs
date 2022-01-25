@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static GameModeDifficultyController;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,8 +47,6 @@ public class GameManager : MonoBehaviour
 
     private bool sceneLoaded = false;
 
-    private bool gameModeSelected = false;
-
 
         // Bool Member Variables -- Life-Indicators
         private bool missedOneWing = false;
@@ -62,18 +61,14 @@ public class GameManager : MonoBehaviour
     // Member variable array for StartingYCoord Pos of the Chicken Wing Prefab
     private float[] startingYCoordArray = new float[] { 2.5f, 3.5f, 4.5f, 5.5f, 6.5f, 7.5f };
 
-
-    // Member variables for GameMode Selections
-    public enum GameMode { Easy = 4, Medium = 3, Hard = 1 };
-
     // Member Variables for the Menu Manager
     private GameObject menuManager;
 
     private MenuManager menuManagerScript;
 
 
-    // Member variables for storing the selected GameMode
-    public GameMode selectedGameMode;
+    // Member Property for storing the selected GameMode
+    private GameMode selectedGameMode;
 
 
     // Member Variables for PlayerPrefs
@@ -113,6 +108,14 @@ public class GameManager : MonoBehaviour
 
         // Get the menuManagerScript component from the menuManager object
         menuManagerScript = menuManager.GetComponent<MenuManager>();
+
+        // Get the stored value from the selectedGameMode variable in the
+        // GameMode Difficulty Controller to the selectedGameMode in the GameManager
+        selectedGameMode = GameModeDifficultyController.selectedGameMode;
+
+        // Execute the selectGameMode method to choose the speed of Wing
+        // based on the game difficulty
+        SelectGameMode(selectedGameMode);
     }
 
 
@@ -120,11 +123,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (menuManagerScript.isTheCurrentScene("GamePlay") || menuManagerScript.isTheCurrentScene("GameOver"))
         {
             // Check if the timer is over or equal to the interval provided by the GameMode
             // and less than three chicken wings have been missed
-            if (timer >= (float)selectedGameMode && !isTheGameOver && !gameModeSelected)
+            if (timer >= (float)selectedGameMode && !isTheGameOver)
             {
                 // Generate the element position reference for the startingYCoordArray
                 int yCoordArrayElementPosition = Random.Range(0, 6);
@@ -310,11 +314,14 @@ public class GameManager : MonoBehaviour
             {
                 wingManagerScript.timeMultplier = 1.0f;
             }
-
-            // Make the gameModeSelected bool to be true as the respective selectedGameMode have been initialized
-            gameModeSelected = true;
         }
 
+
+        // Method: Set the selectedGameMode Variable
+        public void SetGameMode(GameMode gameMode)
+        {
+            selectedGameMode = gameMode;
+        }
 
 
     // PLAYERPREFS METHODS
@@ -330,8 +337,8 @@ public class GameManager : MonoBehaviour
 
             // Check if the high score value is greater than 
             // the current one stored in the PlayerPrefs
-            if (highScore >= currentHighScore) //0
-            {
+            if (highScore >= currentHighScore) //0 
+        {
                 // Create/Update Playerpref
                 PlayerPrefs.SetInt(saveHighScoreKey, highScore);
 

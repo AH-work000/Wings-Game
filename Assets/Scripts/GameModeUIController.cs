@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameModeDifficultyController;
 
 public class GameModeUIController : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class GameModeUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -64,12 +65,15 @@ public class GameModeUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
+            // Set the selectedGameMode variable in the Game Mode Difficulty Controller to Easy
+            GameModeDifficultyController.selectedGameMode = GameMode.Easy;
+
             // Unload the GameMode Scene using Async Loading
             menuManagerScript.UnloadScene("GameMode");
 
             // Call the LoadGameplay method in menuManagerScript to load the gameplay scene
-            menuManagerScript.LoadGamePlay("Easy");
-    }
+            StartCoroutine(menuManagerScript.LoadGamePlay("Easy"));
+        }
 
 
         // Method: Destroy this scene and load the Gameplay scene in Medium Mode
@@ -78,11 +82,14 @@ public class GameModeUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
+            // Set the selectedGameMode variable in the Game Mode Difficulty Controller to Medium
+            GameModeDifficultyController.selectedGameMode = GameMode.Medium;
+
             // Unload the GameMode Scene using Async Loading
             menuManagerScript.UnloadScene("GameMode");
 
             // Call the LoadGameplay method in menuManagerScript to load the gameplay scene
-            menuManagerScript.LoadGamePlay("Medium");
+            StartCoroutine(menuManagerScript.LoadGamePlay("Medium"));
         }
 
 
@@ -92,12 +99,14 @@ public class GameModeUIController : MonoBehaviour
             // Play the Button Clicked Sound
             menuManagerScript.menuAudioManagerScript.PlayButtonClickedSound(buttonClickedAudioSource);
 
+            // Set the selectedGameMode variable in the Game Mode Difficulty Controller to Hard
+            GameModeDifficultyController.selectedGameMode = GameMode.Hard;
+
             // Unload the GameMode Scene using Async Loading
             menuManagerScript.UnloadScene("GameMode");
 
             // Call the LoadGameplay method in menuManagerScript to load the gameplay scene
-            menuManagerScript.LoadGamePlay("Hard");
+            StartCoroutine(menuManagerScript.LoadGamePlay("Hard"));
         }
-
 
 }
